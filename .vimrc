@@ -85,6 +85,9 @@ nmap <Leader>/ :nohlsearch<CR>
 " Format Code
 nmap <Leader>f :filetype<CR>
 
+" Run node current file
+nmap <Leader>x :!node %<CR>
+
 "   ULTISNIPS
 
 let g:UltiSnipsSnippetDirectories=[]
