@@ -17,8 +17,8 @@ call plug#begin('~/.config/nvim/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 
 " THEMES
-Plug 'canop/patine'
-"Plug 'nanotech/jellybeans.vim'
+"Plug 'canop/patine'
+Plug 'nanotech/jellybeans.vim'
 
 "NERD
 Plug 'scrooloose/nerdtree'
@@ -46,7 +46,8 @@ Plug 'tpope/vim-repeat'
 
 call plug#end()
 
-colorscheme patine 
+"colorscheme patine 
+colorscheme jellybeans
 
 "****************************************
 "		CONFIG
