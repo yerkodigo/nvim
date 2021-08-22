@@ -10,15 +10,15 @@ set showmatch
 set sw=2
 set relativenumber
 set noshowmode
+set nocompatible
+
+set tabstop=3 softtabstop=3 shiftwidth=3 expandtab
 
 call plug#begin('~/.config/nvim/.vim/plugged')
 
-" SYNTAX
-Plug 'sheerun/vim-polyglot'
-
 " THEMES
-"Plug 'canop/patine'
-Plug 'nanotech/jellybeans.vim'
+Plug 'canop/patine'
+"Plug 'nanotech/jellybeans.vim'
 
 "NERD
 Plug 'scrooloose/nerdtree'
@@ -34,7 +34,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
 
 "Snippets autocomplete
-Plug 'sirver/ultisnips'
+"Plug 'sirver/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Git
@@ -42,24 +42,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 
 " Live Server Bracey
-"Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call plug#end()
 
-"colorscheme patine 
-colorscheme jellybeans
+colorscheme patine 
+"colorscheme jellybeans
 
 "****************************************
 "		CONFIG
 "****************************************
 
-"   CursorLine
+"   CursorLine Underline
 set cursorline
 :hi clear CursorLine
 :hi CursorLine gui=underline cterm=underline
 
-"   Bracey
-"let g:bracey_browser_command='firefox'
 
 "   NERDTree
 let NERDTreeQuitOnOpen=1
@@ -72,33 +70,38 @@ nmap <Leader>q :q<CR>
 nmap <Leader>p :Files<CR>
 
 "" Live Server Bracey
+"let g:bracey_browser_command='firefox'
 "" Run LiveServer
-"nmap <Leader>b :Bracey<CR>
+nmap <Leader>b :Bracey<CR>
 "" Stop LiveServer
-"nmap <Leader>bs :BraceyStop<CR>
+nmap <Leader>bs :BraceyStop<CR>
 "" Reload LiveServer
-"nmap <Leader>br :BraceyReload<CR>
+nmap <Leader>br :BraceyReload<CR>
 
 " Search Occult
 nmap <Leader>/ :nohlsearch<CR>
 
 " Format Code
-nmap <Leader>f :filetype<CR>
+nmap <Leader>f :set filetype<CR>
 
 " Run node current file
 nmap <Leader>x :!node %<CR>
 
 "   ULTISNIPS
 
-let g:UltiSnipsSnippetDirectories=[]
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<Leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+"let g:UltiSnipsSnippetDirectories=[]
+"let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsListSnippets="<Leader><tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 "   IdentLine
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['|', '¦', '¦', '¦']
+let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript']
+"let g:indentLine_indentLevel= 20
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 1
 
 "   Custom Jellybeans
 "let g:jellybeans_use_term_italics = 1
@@ -106,7 +109,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "let g:jellybeans_overrides = {
 "            \    'background': { 'guibg': '000000' },
 "            \}
-
 
 "   Lightlane
 let g:lightline = {
@@ -132,5 +134,3 @@ let g:lightline = {
             \   'right': ''
             \ }
             \}
-
-
