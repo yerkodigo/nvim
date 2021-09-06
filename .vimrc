@@ -8,15 +8,16 @@ set ruler
 set encoding=utf-8
 set showmatch
 set sw=2
-set relativenumber
+"set relativenumber
 set noshowmode
 set nocompatible
 
-set tabstop=3 softtabstop=3 shiftwidth=3 expandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 call plug#begin('~/.config/nvim/.vim/plugged')
 
 " THEMES
+"Plug 'AlessandroYorba/Sierra'
 Plug 'canop/patine'
 "Plug 'nanotech/jellybeans.vim'
 
@@ -48,6 +49,17 @@ call plug#end()
 
 colorscheme patine 
 "colorscheme jellybeans
+
+"Sierra Theme config
+"   Black Background
+"let g:sierra_Pitch = 1
+"   Almost Black Background
+"let g:sierra_Midnight = 1
+"   Even Darker Grey Background
+"let g:sierra_Twilight = 1
+"   Dark Grey Background
+"let g:sierra_Sunset = 1
+"colorscheme sierra
 
 "****************************************
 "		CONFIG
