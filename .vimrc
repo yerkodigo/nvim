@@ -17,9 +17,9 @@ set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 call plug#begin('~/.config/nvim/.vim/plugged')
 
 " THEMES
-"Plug 'AlessandroYorba/Sierra'
-Plug 'canop/patine'
+"Plug 'canop/patine'
 "Plug 'nanotech/jellybeans.vim'
+Plug 'ackyshake/spacegray.vim'
 
 "NERD
 Plug 'scrooloose/nerdtree'
@@ -47,19 +47,14 @@ Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call plug#end()
 
-colorscheme patine 
+"colorscheme patine 
 "colorscheme jellybeans
 
-"Sierra Theme config
-"   Black Background
-"let g:sierra_Pitch = 1
-"   Almost Black Background
-"let g:sierra_Midnight = 1
-"   Even Darker Grey Background
-"let g:sierra_Twilight = 1
-"   Dark Grey Background
-"let g:sierra_Sunset = 1
-"colorscheme sierra
+" *** SPACEGRAY COLORSCHEME AND CONFIG *** 
+let g:spacegray_use_italics = 1
+"let g:spacegray_low_contrast = 1
+colorscheme spacegray
+
 
 "****************************************
 "		CONFIG
