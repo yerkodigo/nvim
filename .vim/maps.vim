@@ -5,6 +5,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>p :Files<CR>
+map <Leader>ag :Ag<CR>
 
 "" Live Server Bracey
 "let g:bracey_browser_command='firefox'
