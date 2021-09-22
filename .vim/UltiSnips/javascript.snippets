@@ -1,3 +1,16 @@
 snippet clg "console.log()" b
 console.log(${1:'$2', $3})
 endsnippet
+
+snippet createServer "createServer" b
+  .createServer((req, res) => {
+
+  })
+  .listen(PORT, () => {
+    console.log('Listening Server on port ' + PORT);
+  })
+endsnippet
+
+snippet PORT "Enviorment Port" b
+const PORT = process.env.PORT || 3000;
+endsnippet

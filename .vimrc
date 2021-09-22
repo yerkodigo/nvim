@@ -12,6 +12,8 @@ set sw=2
 set noshowmode
 set nocompatible
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set guifont=Monaco 
+
 
 so ~/.config/nvim/.vim/maps.vim
 so ~/.config/nvim/.vim/plugins.vim
