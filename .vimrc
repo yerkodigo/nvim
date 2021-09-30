@@ -21,6 +21,7 @@ so ~/.config/nvim/.vim/configPlugins.vim
 
 "colorscheme patine 
 "colorscheme jellybeans
+let g:gruvbox_italic=1
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = "hard"
 highlight Normal ctermbg=NONE
