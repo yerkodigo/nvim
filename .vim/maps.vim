@@ -5,7 +5,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>p :Files<CR>
-map <Leader>ag :Ag<CR>
+nmap <Leader>ag :Ag<CR>
 
 "" Live Server Bracey
 "let g:bracey_browser_command='firefox'
@@ -27,3 +27,6 @@ nmap <Leader>f :set filetype<CR>
 
 " Run node current file
 nmap <Leader>x :!node %<CR>
+
+" Toggle line number mode
+nmap <Leader>rn :set rnu!<cr>
