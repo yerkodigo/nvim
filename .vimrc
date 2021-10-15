@@ -8,7 +8,7 @@ set ruler
 set encoding=utf-8
 set showmatch
 set sw=2
-"set relativenumber
+set relativenumber
 set noshowmode
 set nocompatible
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
