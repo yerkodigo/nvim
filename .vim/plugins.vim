@@ -9,6 +9,10 @@ Plug 'morhetz/gruvbox'
 "Syntax
 Plug 'sheerun/vim-polyglot'
 
+"Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+
 "NERD
 Plug 'scrooloose/nerdtree'
 
@@ -40,5 +44,8 @@ Plug 'tpope/vim-repeat'
 
 " Live Server Bracey
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+
+ "Compilot.vim
+"Plug 'github/compilot.vim'
 
 call plug#end()

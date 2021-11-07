@@ -8,6 +8,9 @@ let g:UltiSnipsListSnippets="<C-_>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
+"   Coc
+let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-emmet', 'coc-tslint', 'coc-prettier' ]
+
 "IdentLine
 let g:indentLine_char_list = ['|', '¦', '¦', '¦']
 let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript']

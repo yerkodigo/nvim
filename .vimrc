@@ -23,8 +23,9 @@ so ~/.config/nvim/.vim/configPlugins.vim
 "colorscheme jellybeans
 let g:gruvbox_italic=1
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
-highlight Normal ctermbg=NONE
+let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_termcolors=16
+highlight Normal ctermbg=black
 set laststatus=2
 
 "CursorLine Underline
