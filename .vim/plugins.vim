@@ -9,6 +9,9 @@ Plug 'morhetz/gruvbox'
 "Syntax
 Plug 'sheerun/vim-polyglot'
 
+"Color CSS
+Plug 'ap/vim-css-color'
+
 "Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
