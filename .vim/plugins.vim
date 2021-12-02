@@ -6,6 +6,9 @@ call plug#begin('~/.config/nvim/.vim/plugged')
 "Plug 'ackyshake/spacegray.vim'
 Plug 'morhetz/gruvbox'
 
+"Search
+Plug 'dkprice/vim-easygrep'
+
 "Syntax
 Plug 'sheerun/vim-polyglot'
 
@@ -24,7 +27,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "IDE
 Plug 'yggdroot/indentline'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'preservim/nerdcommenter'

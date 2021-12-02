@@ -4,7 +4,10 @@ let mapleader=" "
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
+
+"Search Files with fzf
 nmap <Leader>p :Files<CR>
+"Search keywords with The Silver Searcher
 nmap <Leader>ag :Ag<CR>
 
 "" Live Server Bracey
