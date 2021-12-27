@@ -1,29 +1,17 @@
 call plug#begin('~/.config/nvim/.vim/plugged')
 
-" THEMES
-"Plug 'canop/patine'
-"Plug 'nanotech/jellybeans.vim'
-"Plug 'ackyshake/spacegray.vim'
-Plug 'morhetz/gruvbox'
-
-"Search
-Plug 'dkprice/vim-easygrep'
-
-"Syntax
-Plug 'sheerun/vim-polyglot'
-
-"Color CSS
-Plug 'ap/vim-css-color'
+Plug 'rafi/awesome-vim-colorschemes'    "Themes
+Plug 'dkprice/vim-easygrep'             "Search
+Plug 'sheerun/vim-polyglot'             "Syntax
+Plug 'ap/vim-css-color'                 "CSS Color
+Plug 'scrooloose/nerdtree'              "Tree Directory
+"Plug 'ryanoasis/vim-devicons'           "Developer Icons
+Plug 'christoomey/vim-tmux-navigator'   "TMUX Navigator
+"Plug 'github/compilot.vim'              "Github compilot
 
 "Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-
-"NERD
-Plug 'scrooloose/nerdtree'
-
-"TMUX
-Plug 'christoomey/vim-tmux-navigator'
 
 "IDE
 Plug 'yggdroot/indentline'
@@ -50,8 +38,5 @@ Plug 'tpope/vim-repeat'
 
 " Live Server Bracey
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-
- "Compilot.vim
-"Plug 'github/compilot.vim'
 
 call plug#end()

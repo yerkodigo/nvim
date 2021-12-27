@@ -1,13 +1,7 @@
-"   Theme
-set background=dark
-let g:gruvbox_bold=1
-let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark="hard"
-"let g:gruvbox_termcolors=16
-let g:gruvbox_contrast_light="hard"
-
 "   NERDTree
 let NERDTreeQuitOnOpen=1
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
 
 "   ULTISNIPS
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/.vim/UltiSnips']
@@ -27,11 +21,11 @@ let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
 
 "   Custom Jellybeans
-"let g:jellybeans_use_term_italics = 1
-"
-"let g:jellybeans_overrides = {
-"            \    'background': { 'guibg': '000000' },
-"            \}
+let g:jellybeans_use_term_italics = 1
+let g:jellybeans_use_lowcolor_black = 1
+let g:jellybeans_overrides = {
+            \    'background': { 'guibg': '000000' },
+            \}
 
 "   Lightlane
 let g:lightline = {
@@ -51,7 +45,7 @@ let g:lightline = {
             \   'gitbranch': 'fugitive#head',
             \   'kitestatus': 'kite#statusline'
             \ },
-            \ 'colorscheme': 'gruvbox',
+            \ 'colorscheme': 'wombat',
             \ 'subseparator': {
             \   'left': '',
             \   'right': ''

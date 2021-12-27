@@ -1,37 +1,26 @@
-set number
-set mouse=a
-set numberwidth=1
-set clipboard=unnamed
-syntax enable
-set showcmd
-set ruler
-set encoding=utf-8
-set showmatch
-set sw=2
-set relativenumber
-set noshowmode
-set nocompatible
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-set guifont=Monaco 
+:set nocompatible
+:set number
+:set relativenumber
+:set autoindent
+:set tabstop=2
+:set shiftwidth=2
+:set softtabstop=2
+:set expandtab
+:set mouse=a
 
+so /home/user32/.config/nvim/.vim/maps.vim              "Key Mappings
+so /home/user32/.config/nvim/.vim/plugins.vim           "Plugins
+so /home/user32/.config/nvim/.vim/configPlugins.vim     "Plugins Configuration
 
-so /home/user32/.config/nvim/.vim/maps.vim
-so /home/user32/.config/nvim/.vim/plugins.vim
-so /home/user32/.config/nvim/.vim/configPlugins.vim
+":set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ Monaco\ 11
+:set encoding=utf-8
 
-"colorscheme patine 
-"colorscheme jellybeans
-colorscheme gruvbox
+:colorscheme jellybeans      "Terminal Theme
 
-highlight Normal ctermbg=black
-set laststatus=2
+"highlight Normal ctermbg=black
+:set laststatus=2
 
 "CursorLine Underline
-set cursorline
+:set cursorline
 :hi clear CursorLine
 :hi CursorLine gui=underline cterm=underline
-
-"" *** SPACEGRAY COLORSCHEME AND CONFIG *** 
-"let g:spacegray_use_italics = 1
-""let g:spacegray_low_contrast = 1
-"colorscheme spacegray
