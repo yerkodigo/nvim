@@ -8,6 +8,11 @@ imap <A-k> <Esc>:m .-2<CR>==gi
 vmap <A-j> :m '>+1<CR>gv=gv
 vmap <A-k> :m '<-2<CR>gv=gv
 
+"TABS moving
+nmap <C-n> :tabnew .<CR>
+nmap <C-Right> :tabnext <CR>
+nmap <C-Left> :tabprevious <CR>
+
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
