@@ -37,8 +37,9 @@ nmap <Leader>; $a;<Esc>
 " Search Occult
 nmap <Leader>/ :nohlsearch<CR>
 
-" Format Code
-nmap <Leader>f :set filetype<CR>
+" Format all Code & current position
+nmap <Leader>f :set filetype<CR>gg=G
+nmap <Leader>F =ap
 
 " Run current file with Node
 nmap <Leader>x :!node %<CR>

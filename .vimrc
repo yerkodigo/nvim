@@ -17,7 +17,13 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 ":set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ Monaco\ 11
 :set encoding=utf-8
 
-:colorscheme jellybeans      "Terminal Theme
+"Theme time setting
+let hr = strftime("%H")
+if hr >= 9
+    colorscheme fogbell_light
+elseif hr >= 20
+    colorscheme fogbell
+endif
 
 "highlight Normal ctermbg=black
 :set laststatus=2
