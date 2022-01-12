@@ -17,12 +17,14 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 ":set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ Monaco\ 11
 :set encoding=utf-8
 
-"Theme time setting
-let hr = strftime("%H")
-if hr >= 9
-    colorscheme fogbell_light
-elseif hr >= 20
-    colorscheme fogbell
+"Theme time setting 24 hours       "<-0------7------21-----24->
+let hr = (strftime('%H'))          "  | dark | light | dark |     
+if hr >= 21
+    colorscheme fogbell    "21 to 24
+elseif hr >= 7
+    colorscheme fogbell_light    "7 to 21
+elseif hr >= 0
+    colorscheme fogbell    "0 to 7
 endif
 
 "highlight Normal ctermbg=black
