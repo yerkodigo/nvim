@@ -8,9 +8,9 @@
 :set expandtab
 :set mouse=a
 
-so /home/user32/.config/nvim/.vim/maps.vim              "Key Mappings
-so /home/user32/.config/nvim/.vim/plugins.vim           "Plugins
-so /home/user32/.config/nvim/.vim/configPlugins.vim     "Plugins Configuration
+so $HOME/.config/nvim/.vim/maps.vim              "Key Mappings
+so $HOME/.config/nvim/.vim/plugins.vim           "Plugins
+so $HOME/.config/nvim/.vim/configPlugins.vim     "Plugins Configuration
 
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
