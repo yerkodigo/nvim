@@ -17,6 +17,9 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 
+"Copy into vim in visual mode
+vmap <C-c> "+y
+
 "Search Files with fzf
 nmap <Leader>p :Files<CR>
 "Search keywords with The Silver Searcher
