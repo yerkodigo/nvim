@@ -27,6 +27,8 @@ elseif hr >= 0
     colorscheme fogbell    "0 to 7
 endif
 
+highlight Comment cterm=italic
+
 "highlight Normal ctermbg=black
 :set laststatus=2
 
