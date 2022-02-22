@@ -19,12 +19,19 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 "Theme time setting 24 hours       "<-0------7------21-----24->
 let hr = (strftime('%H'))          "  | dark | light | dark |     
-if hr >= 21
-    colorscheme fogbell    "21 to 24
-elseif hr >= 7
-    colorscheme fogbell_light    "7 to 21
-elseif hr >= 0
-    colorscheme fogbell    "0 to 7
+
+if hr >= 21 "21 to 24
+    "colorscheme fogbell
+    colorscheme sierra
+    highlight Normal ctermbg=black
+elseif hr >= 7 "7 to 21
+    "colorscheme fogbell_light
+    set background=light
+    colorscheme scheakur    
+elseif hr >= 0 "0 to 7
+    "colorscheme fogbell
+    colorscheme sierra
+    highlight Normal ctermbg=black
 endif
 
 highlight Comment cterm=italic
