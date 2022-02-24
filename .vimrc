@@ -7,6 +7,7 @@
 :set softtabstop=2
 :set expandtab
 :set mouse=a
+:set ignorecase
 
 so $HOME/.config/nvim/.vim/maps.vim              "Key Mappings
 so $HOME/.config/nvim/.vim/plugins.vim           "Plugins
