@@ -22,18 +22,14 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 let hr = (strftime('%H'))          "  | dark | light | dark |     
 
 if hr >= 21 "21 to 24
-    colorscheme fogbell "Monochrome
-    "colorscheme jellybeans 
+    let g:sierra_Pitch = 1
+    colorscheme sierra
 elseif hr >= 7 "7 to 21
-    "set background=light
-    "colorscheme scheakur    
-    colorscheme fogbell_light "Monochrome
+    set background=light
+    colorscheme scheakur    
 elseif hr >= 0 "0 to 7
-    "colorscheme jellybeans 
-    colorscheme fogbell "Monochrome
-    "let g:sierra_Pitch = 1
-    "colorscheme sierra
-    "highlight Normal ctermbg=black
+    let g:sierra_Pitch = 1
+    colorscheme sierra
 endif
 
 highlight Comment cterm=italic
