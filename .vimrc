@@ -19,18 +19,20 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 :set encoding=utf-8
 
 "Theme time setting 24 hours       "<-0------7------21-----24->
-let hr = (strftime('%H'))          "  | dark | light | dark |     
+"let hr = (strftime('%H'))          "  | dark | light | dark |     
 
-if hr >= 21 "21 to 24
-    let g:sierra_Pitch = 1
-    colorscheme sierra
-elseif hr >= 7 "7 to 21
-    set background=light
-    colorscheme scheakur    
-elseif hr >= 0 "0 to 7
-    let g:sierra_Pitch = 1
-    colorscheme sierra
-endif
+colorscheme PaperColor
+
+"if hr >= 21 "21 to 24
+    "let g:sierra_Pitch = 1
+    "colorscheme sierra
+"elseif hr >= 7 "7 to 21
+    "set background=light
+    "colorscheme scheakur    
+"elseif hr >= 0 "0 to 7
+    "let g:sierra_Pitch = 1
+    "colorscheme sierra
+"endif
 
 highlight Comment cterm=italic
 
@@ -39,5 +41,6 @@ highlight Comment cterm=italic
 
 "CursorLine Underline
 :set cursorline
-:hi clear CursorLine
-:hi CursorLine gui=underline cterm=underline
+:set cursorcolumn
+":hi clear CursorLine
+":hi CursorLine gui=underline cterm=underline
