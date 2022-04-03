@@ -15,7 +15,7 @@ let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-emmet', 'coc-ts
 
 "IdentLine
 let g:indentLine_char_list = ['|', '¦', '¦', '¦']
-let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript']
+let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript', 'vim']
 "let g:indentLine_indentLevel= 20
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1

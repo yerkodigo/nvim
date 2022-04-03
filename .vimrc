@@ -19,20 +19,18 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 :set encoding=utf-8
 
 "Theme time setting 24 hours       "<-0------7------21-----24->
-"let hr = (strftime('%H'))          "  | dark | light | dark |     
+let hr = (strftime('%H'))          "  | dark | light | dark |     
 
-colorscheme PaperColor
-
-"if hr >= 21 "21 to 24
-    "let g:sierra_Pitch = 1
-    "colorscheme sierra
-"elseif hr >= 7 "7 to 21
-    "set background=light
-    "colorscheme scheakur    
-"elseif hr >= 0 "0 to 7
-    "let g:sierra_Pitch = 1
-    "colorscheme sierra
-"endif
+if hr >= 21 "21 to 24
+    set background=dark
+    colorscheme PaperColor
+elseif hr >= 7 "7 to 21
+    set background=light
+    colorscheme PaperColor
+elseif hr >= 0 "0 to 7
+    set background=dark
+    colorscheme PaperColor
+endif
 
 highlight Comment cterm=italic
 
