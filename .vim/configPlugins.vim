@@ -15,17 +15,10 @@ let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-emmet', 'coc-ts
 
 "IdentLine
 let g:indentLine_char_list = ['|', '¦', '¦', '¦']
-let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript', 'vim']
+let g:indentLine_fileType=['javascript', 'html', 'css', 'scss', 'typescript', 'vim', 'nerdtree', 'json']
 "let g:indentLine_indentLevel= 20
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
-
-"   Custom Jellybeans
-let g:jellybeans_use_term_italics = 1
-let g:jellybeans_use_lowcolor_black = 1
-let g:jellybeans_overrides = {
-            \    'background': { 'guibg': '000000' },
-            \}
 
 "   Lightlane
 let g:lightline = {
