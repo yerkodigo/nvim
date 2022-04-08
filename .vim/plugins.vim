@@ -39,4 +39,7 @@ Plug 'tpope/vim-repeat'
 " Live Server Bracey
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
+" SmoothScrolling
+Plug 'psliwka/vim-smoothie'
+
 call plug#end()
