@@ -52,3 +52,7 @@ nmap <Leader>s :!ts-node %<CR>
 
 " Toggle line number mode
 nmap <Leader>rn :set rnu!<cr>
+
+" Check Spelling
+nmap <Leader>sp :set spell!<cr>
+nmap <Leader>z z=

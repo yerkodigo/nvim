@@ -8,6 +8,7 @@
 :set expandtab
 :set mouse=a
 :set ignorecase
+:set spelllang=es_es
 
 so $HOME/.config/nvim/.vim/maps.vim              "Key Mappings
 so $HOME/.config/nvim/.vim/plugins.vim           "Plugins
