@@ -1,5 +1,5 @@
 ""		KEYMAP
-"let mapleader=" "
+let mapleader=" "
 "
 "nmap <A-j> :m .+1<CR>==
 "nmap <A-k> :m .-2<CR>==
@@ -13,12 +13,12 @@
 "nmap <C-Right> :tabnext <CR>
 "nmap <C-Left> :tabprevious <CR>
 "
-"nmap <Leader>nt :NERDTreeFind<CR>
-"nmap <Leader>w :w<CR>
-"nmap <Leader>q :q<CR>
+nmap <Leader>nt :NERDTreeFind<CR>
+nmap <Leader>w :w<CR>
+nmap <Leader>q :q<CR>
 "
 ""Copy into vim in visual mode
-"vmap <C-c> "+y
+vmap <C-c> "+y
 "
 ""Search Files with fzf
 "nmap <Leader>p :Files<CR>
@@ -34,25 +34,25 @@
 """ Reload LiveServer
 ""nmap <Leader>br :BraceyReload<CR>
 "
-"" Insert a ; at the end of the current line
-"nmap <Leader>; $a;<Esc>
+" Insert a ; at the end of the current line
+nmap <Leader>; $a;<Esc>
 "
-"" Search Occult
-"nmap <Leader>/ :nohlsearch<CR>
-"
-"" Format all Code & current position
-"nmap <Leader>f :set filetype<CR>gg=G
-"nmap <Leader>F =ap
-"
+" Search Occult
+nmap <Leader>/ :nohlsearch<CR>
+
+" Format all Code & current position
+nmap <Leader>f :set filetype<CR>gg=G
+nmap <Leader>F =ap
+
 "" Run current file with Node
 "nmap <Leader>x :!node %<CR>
 "
 "" Run current file with TS-Node
 "nmap <Leader>s :!ts-node %<CR>
 "
-"" Toggle line number mode
-"nmap <Leader>rn :set rnu!<cr>
+" Toggle line number mode
+nmap <Leader>rn :set rnu!<cr>
 "
-"" Check Spelling
-"nmap <Leader>sp :set spell!<cr>
-"nmap <Leader>z z=
+" Check Spelling
+nmap <Leader>sp :set spell!<cr>
+nmap <Leader>z z=

@@ -1,7 +1,7 @@
 ""   NERDTree
-"let NERDTreeQuitOnOpen=1
-"let g:NERDTreeDirArrowExpandable="+"
-"let g:NERDTreeDirArrowCollapsible="~"
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
 "
 ""   ULTISNIPS
 "let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/.vim/UltiSnips']
@@ -11,7 +11,7 @@
 "let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 "
 ""   Coc
-"let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-emmet', 'coc-tslint', 'coc-prettier' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-emmet', 'coc-tslint', 'coc-prettier' ]
 "
 ""IdentLine
 "let g:indentLine_char_list = ['|', '¦', '¦', '¦']
