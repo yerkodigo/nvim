@@ -15,22 +15,22 @@ Plug 'ryanoasis/vim-devicons'           "Developer Icons
 "Plug 'ianks/vim-tsx'
 
 ""IDE
-"Plug 'yggdroot/indentline'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-"Plug 'mhinz/vim-signify'
-"Plug 'preservim/nerdcommenter'
+Plug 'yggdroot/indentline'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-signify'
+Plug 'preservim/nerdcommenter'
 
 ""Status Bar
 "Plug 'maximbaz/lightline-ale'
 "Plug 'itchyny/lightline.vim'
 
 ""Typing
-"Plug 'alvan/vim-closetag'
-"Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
 
-""Snippets autocomplete
-"Plug 'sirver/ultisnips'
+"Snippets autocomplete
+Plug 'sirver/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 "" Git
@@ -40,7 +40,7 @@ Plug 'neoclide/coc.nvim', {'branch':'release'}
 "" Live Server Bracey
 "Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
-"" SmoothScrolling
-"Plug 'psliwka/vim-smoothie'
+" SmoothScrolling
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
