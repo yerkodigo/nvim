@@ -1,6 +1,10 @@
 ""		KEYMAP
 let mapleader=" "
 
+"KEYMAP TO CHANDE DARK AND LIGHT MODE
+nmap <Leader>dt :call ChangeTheme('dark')<CR>
+nmap <Leader>lt :call ChangeTheme('light')<CR>
+
 nmap <A-j> :m .+1<CR>==
 nmap <A-k> :m .-2<CR>==
 imap <A-j> <Esc>:m .+1<CR>==gi
