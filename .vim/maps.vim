@@ -2,8 +2,8 @@
 let mapleader=" "
 
 "KEYMAP TO CHANDE DARK AND LIGHT MODE
-nmap <Leader>dt :call ChangeTheme('dark')<CR>
-nmap <Leader>lt :call ChangeTheme('light')<CR>
+nmap <Leader>dt :call ChangeTheme('dark', 'PaperColor')<CR>
+nmap <Leader>lt :call ChangeTheme('light', 'PaperColor')<CR>
 
 nmap <A-j> :m .+1<CR>==
 nmap <A-k> :m .-2<CR>==

@@ -34,11 +34,11 @@ so $HOME/.config/nvim/.vim/configPlugins.vim     "Plugins Configuration
 let hr = (strftime('%H'))           "  | dark | light | dark |     
 
 if hr >= 19 "19 to 24
-  call ChangeTheme('dark')
+  call ChangeTheme('dark', 'PaperColor')
 elseif hr >= 7 "7 to 19
-  call ChangeTheme('light')
+  call ChangeTheme('light', 'PaperColor')
 elseif hr >= 0 "0 to 7
-  call ChangeTheme('dark')
+  call ChangeTheme('dark', 'PaperColor')
 endif
 
 "CURSIVE COMMENTS

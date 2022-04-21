@@ -1,15 +1,15 @@
 "CHANGE THEME BETWEEN DARK AND LIGHT MODE
-:function! ChangeTheme(variant)
-  ":let THEME = a:theme
-  :if a:variant ==# 'dark'
+:function! ChangeTheme(...)
+  :if a:1 ==# 'dark'
     :set background=dark
-    :colorscheme PaperColor
+    execute 'colorscheme ' . a:2
     :hi CursorColumn gui=bold cterm=bold ctermbg=8
     :hi CursorLine gui=bold cterm=bold ctermbg=8
-  :elseif a:variant ==# 'light'
+  :elseif a:1 ==# 'light'
     :set background=light
-    :colorscheme PaperColor
+    execute 'colorscheme ' . a:2
     :hi CursorColumn gui=bold cterm=bold ctermbg=6
     :hi CursorLine gui=bold cterm=bold ctermbg=6
   :endif
+  :echo 'Changed theme to ' . a:2 . ' ' . a:1
 :endfunction
