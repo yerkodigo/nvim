@@ -24,7 +24,7 @@ nmap <Leader>q :q<CR>
 "Copy into vim in visual mode
 vmap <C-c> "+y
 
-"Search Files with fzf
+"Search Files with fzf Fuzzy Finder
 nmap <Leader>p :Files<CR>
 "Search keywords with The Silver Searcher
 nmap <Leader>ag :Ag<CR>

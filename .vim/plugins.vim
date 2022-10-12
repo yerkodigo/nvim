@@ -3,11 +3,11 @@ call plug#begin('~/.config/nvim/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'       "Theme
 "Plug 'rafi/awesome-vim-colorschemes'    "Themes
 "Plug 'dkprice/vim-easygrep'             "Search
-"Plug 'sheerun/vim-polyglot'             "Syntax
+"Plug 'sheerun/vim-polyglot'             "Syntax highlight for multiple languages
 Plug 'ap/vim-css-color'                 "CSS Color
 Plug 'scrooloose/nerdtree'              "Tree Directory
 Plug 'ryanoasis/vim-devicons'           "Developer Icons -- working just nerdFonts
-"Plug 'christoomey/vim-tmux-navigator'   "TMUX Navigator
+Plug 'christoomey/vim-tmux-navigator'   "TMUX Navigator
 ""Plug 'github/compilot.vim'              "Github compilot
 
 ""Typescript
@@ -15,10 +15,10 @@ Plug 'ryanoasis/vim-devicons'           "Developer Icons -- working just nerdFon
 "Plug 'ianks/vim-tsx'
 
 ""IDE
-Plug 'yggdroot/indentline'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-signify'
+Plug 'yggdroot/indentline'                                "Code indentation
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }       "Command-line Fuzzy Finder
+Plug 'junegunn/fzf.vim'                                   "Command-line Fuzzy Finder
+Plug 'mhinz/vim-signify'                                  "???
 Plug 'preservim/nerdcommenter'
 
 ""Status Bar
