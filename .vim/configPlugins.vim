@@ -21,26 +21,26 @@ let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
 
 "   Lightlane
-"let g:lightline = {
-"            \ 'active': {
-"            \   'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
-"            \   'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo'], ['gitbranch']]
-"            \ },
-"            \ 'inactive': {
-"            \   'left': [['inactive'], ['relativepath']],
-"            \   'right': [['bufnum']]
-"            \ },
-"            \ 'component': {
-"            \   'bufnum': '%n',
-"            \   'inactive': 'inactive'
-"            \ },
-"            \ 'component_function': {
-"            \   'gitbranch': 'fugitive#head',
-"            \   'kitestatus': 'kite#statusline'
-"            \ },
-"            \ 'colorscheme': 'wombat',
-"            \ 'subseparator': {
-"            \   'left': '',
-"            \   'right': ''
-"            \ }
-"            \}
+let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ 'active': {
+            \   'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
+            \   'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo'], ['gitbranch']]
+            \ },
+            \ 'inactive': {
+            \   'left': [['inactive'], ['relativepath']],
+            \   'right': [['bufnum']]
+            \ },
+            \ 'component': {
+            \   'bufnum': '%n',
+            \   'inactive': 'inactive'
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'gitbranch#name',
+            \   'kitestatus': 'kite#statusline'
+            \ },
+            \ 'subseparator': {
+            \   'left': '¦',
+            \   'right': '¦'
+            \ }
+            \}

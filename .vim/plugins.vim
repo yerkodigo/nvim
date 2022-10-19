@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/.vim/plugged')
 
-Plug 'NLKNguyen/papercolor-theme'       "Theme
+"Plug 'NLKNguyen/papercolor-theme'       "Theme
 "Plug 'rafi/awesome-vim-colorschemes'    "Themes
 "Plug 'dkprice/vim-easygrep'             "Search
 "Plug 'sheerun/vim-polyglot'             "Syntax highlight for multiple languages
@@ -22,8 +22,9 @@ Plug 'mhinz/vim-signify'                                  "???
 Plug 'preservim/nerdcommenter'
 
 ""Status Bar
-"Plug 'maximbaz/lightline-ale'
-"Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 
 ""Typing
 Plug 'alvan/vim-closetag' "HTML close tags <div> --> <div></div>
@@ -34,8 +35,8 @@ Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 "" Git
-"Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 
 "" Live Server Bracey
 "Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
