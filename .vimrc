@@ -50,4 +50,5 @@ highlight Comment cterm=italic
 
 "CURSOR
 :set cursorline
+:hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=white
 :set cursorcolumn
