@@ -21,7 +21,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 
-"Copy into vim in visual mode
+"Copy into vim in visual mode - Remember install xclip in Linux
 vmap <C-c> "+y
 
 "Search Files with fzf Fuzzy Finder
