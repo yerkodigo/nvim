@@ -58,5 +58,8 @@ nmap <Leader>x :!node %<CR>
 nmap <Leader>rn :set rnu!<cr>
 "
 " Check Spelling
-nmap <Leader>sp :set spell!<cr>
+nmap <Leader>pp :set spell!<cr>
 nmap <Leader>z z=
+
+"Copy full current file path in clipboard
+nmap <C-p> :let @+ = expand('%:p')<CR>

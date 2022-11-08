@@ -22,6 +22,7 @@
 
 "SPELLING LANGUAGE
 :set spelllang=es_es
+":setlocal spell spelllang=es_es
 
 so $HOME/.config/nvim/.vim/functions.vim         "Custom functions
 so $HOME/.config/nvim/.vim/maps.vim              "Key Mappings
