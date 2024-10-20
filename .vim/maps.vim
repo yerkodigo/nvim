@@ -37,3 +37,32 @@ imap <A-j> <Esc>:m .+1<CR>==gi
 imap <A-k> <Esc>:m .-2<CR>==gi
 vmap <A-j> :m '>+1<CR>gv=gv
 vmap <A-k> :m '<-2<CR>gv=gv
+
+" ================== FZF ==================
+" Mapeo para buscar archivos en el directorio actual
+nmap <Leader>ff :Files<CR>
+
+" Mapeo para buscar en el contenido de los archivos
+nmap <Leader>fg :Ag<CR>
+
+" Mapeo para buscar en el historial de comandos
+nmap <Leader>fh :History<CR>
+
+" Mapeo para buscar en los buffers abiertos
+nmap <Leader>fb :Buffers<CR>
+
+" Mapeo para buscar en el repositorio Git
+nmap <Leader>fgit :GFiles<CR>
+
+" Mapeo para buscar en el contenido de Git
+nmap <Leader>fgc :Ggrep<CR>
+
+" Mapeo para buscar en el contenido de archivos abiertos
+nmap <Leader>fw :Rg<CR>
+
+" Mapeo para buscar en el contenido de archivos de texto
+nmap <Leader>ft :Tags<CR>
+
+" Mapeo para buscar en el contenido de archivos de configuración
+nmap <Leader>fc :CocList<CR>
+" ================== FZF END ==================
