@@ -2,4 +2,7 @@
 
 -- Working in the documentation 👷 --
 
-test
+En el directorio raiz se debe crear un archivo .vimrc en donde tenga el siguiente contenido:
+```
+so $HOME/nvim/.vimrc
+```
