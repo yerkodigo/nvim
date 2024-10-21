@@ -10,6 +10,17 @@ Cerrar y abrir el cmd para ver si los cambios surgieron efecto ejecutando el com
 ```
 nvim --version
 ```
+
+Crea una carpeta para la configuración de Neovim:
+```
+mkdir %LOCALAPPDATA%\nvim
+```
+
+Crea un archivo de configuración básico:
+```
+echo. > %LOCALAPPDATA%\nvim\init.vim
+```
+
 LISTO
 
 -- Working in the documentation 👷 --
