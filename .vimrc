@@ -30,14 +30,14 @@ set mouse=a
 
 "set ignorecase
 
-so $HOME/nvim/.vim/maps.vim              "Key Mappings
-so $HOME/nvim/.vim/plugins.vim           "Plugins
-so $HOME/nvim/.vim/configPlugins.vim     "Plugins Configuration
-so $HOME/nvim/.vim/CocConfig.vim         "Neoclide Coc Configuration
+so $HOME/.config/nvim/.vim/maps.vim              "Key Mappings
+so $HOME/.config/nvim/.vim/plugins.vim           "Plugins
+so $HOME/.config/nvim/.vim/configPlugins.vim     "Plugins Configuration
+so $HOME/.config/nvim/.vim/CocConfig.vim         "Neoclide Coc Configuration
 "so $HOME/.config/nvim/.vim/functions.vim         "Custom functions
 
 "THEME
-colorscheme mies
+colorscheme base16-grayscale-light
 
 "SPELLING LANGUAGE
 set spelllang=es_es
@@ -55,3 +55,5 @@ set cursorcolumn
 
 "hi CursorLine   cterm=NONE ctermbg=gray ctermfg=white
 "hi CursorColumn cterm=NONE ctermbg=gray ctermfg=white
+
+highlight CursorLine cterm=underline gui=underline

@@ -1,4 +1,5 @@
-call plug#begin('~/nvim/.vim/plugged')
+call plug#begin('~/.config/nvim/.vim/plugged')
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Integración de fzf con Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -14,7 +15,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'   "TMUX Navigator
 
 "THEMES
-Plug 'jaredgorski/Mies.vim'
+"Plug 'jaredgorski/Mies.vim'
+Plug 'chriskempson/base16-vim'
 
 ""Typing
 Plug 'alvan/vim-closetag' "HTML close tags <div> --> <div></div>
