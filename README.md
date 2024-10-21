@@ -1,5 +1,17 @@
 # Neovim configs
 
+Para instalar Neovim sin permisos de administrador se debe descargar la version no release de Neo vim en su repo https://github.com/neovim/neovim/releases/
+Luego extraer el archivo en la ruta donde tenemos nuestros programas por ejemplo C:\Users\MIUSUARIO\Apps\Neovim
+Luego ejecutar el siguiente comando en cmd:
+```
+setx PATH "%PATH%;C:\Users\TuNombreDeUsuario\Apps\Neovim\bin"
+```
+Cerrar y abrir el cmd para ver si los cambios surgieron efecto ejecutando el comando
+```
+nvim --version
+```
+LISTO
+
 -- Working in the documentation 👷 --
 
 En el directorio raiz se debe crear un archivo .vimrc en donde tenga el siguiente contenido:
