@@ -14,6 +14,8 @@ set ignorecase               " Ignora mayúsculas/minúsculas en búsquedas
 set smartcase                " Activa mayúsculas/minúsculas si hay mayúsculas en la búsqueda
 set clipboard=unnamedplus    " Usa el portapapeles del sistema
 
+let NERDTreeShowHidden=1     "Muestra los archivos y directorios ocultos
+
 "CHARACTER ENCODING
 set encoding=utf-8
 
