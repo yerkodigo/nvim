@@ -1,145 +1,123 @@
-# Neovim configs
+# Neovim Configs 🚀
 
-Para instalar Neovim sin permisos de administrador se debe descargar la version no release de Neo vim en su repo https://github.com/neovim/neovim/releases/
-Luego extraer el archivo en la ruta donde tenemos nuestros programas por ejemplo C:\Users\MIUSUARIO\Apps\Neovim
-Luego ejecutar el siguiente comando en cmd:
-```
-setx PATH "%PATH%;C:\Users\TuNombreDeUsuario\Apps\Neovim\bin"
-```
-Cerrar y abrir el cmd para ver si los cambios surgieron efecto ejecutando el comando
-```
-nvim --version
-```
+Este repositorio contiene instrucciones y documentación para configurar **Neovim** sin permisos de administrador, junto con una lista detallada de plugins esenciales para optimizar tu flujo de trabajo en Vim/Neovim.
 
-Crea una carpeta para la configuración de Neovim:
-```
-mkdir %LOCALAPPDATA%\nvim
-```
+## Instalación de Neovim sin Permisos de Administrador
 
-Crea un archivo de configuración básico:
-```
-echo. > %LOCALAPPDATA%\nvim\init.vim
-```
+1. Descarga la versión **no release** de Neovim desde su [repositorio oficial](https://github.com/neovim/neovim/releases).
+2. Extrae el archivo en una carpeta donde guardas tus programas, por ejemplo: `C:\Users\MIUSUARIO\Apps\Neovim`.
+3. Ejecuta el siguiente comando en **cmd** para agregar Neovim a la variable `PATH`:
+    ```bash
+    setx PATH "%PATH%;C:\Users\TuNombreDeUsuario\Apps\Neovim\bin"
+    ```
+4. Cierra y abre nuevamente **cmd**, y verifica la instalación ejecutando:
+    ```bash
+    nvim --version
+    ```
 
-LISTO
+### Configuración Básica de Neovim
 
--- Working in the documentation 👷 --
+1. Crea la carpeta de configuración para Neovim:
+    ```bash
+    mkdir %LOCALAPPDATA%\nvim
+    ```
+2. Crea un archivo de configuración básico (`init.vim`):
+    ```bash
+    echo. > %LOCALAPPDATA%\nvim\init.vim
+    ```
 
-En el directorio raiz se debe crear un archivo .vimrc en donde tenga el siguiente contenido:
-```
-so $HOME/nvim/.vimrc
-```
-# Documentación de Plugins de Vim
+¡Listo! Neovim está configurado. Ahora puedes personalizarlo según tus preferencias.
 
-Esta es una lista de plugins utilizados en la configuración de Vim, junto con una breve descripción, comandos esenciales para su uso y mapeos de teclas personalizados.
+---
 
-## Fuzzy Finder
+## Plugins de Neovim 🛠️
 
-### `fzf`
-- **Descripción**: Un buscador difuso que permite encontrar archivos y contenido rápidamente.
-- **Comando**: `:FZF` - Abre el buscador difuso para buscar archivos en el directorio actual.
+Esta es una lista de plugins utilizados en la configuración de Neovim, con una breve descripción, comandos esenciales y atajos de teclado personalizados.
 
-### `fzf.vim`
-- **Descripción**: Integración de `fzf` con Vim.
-- **Comandos útiles**:
-  - `:Files` - Busca archivos en el directorio actual.
-  - `:GFiles` - Busca archivos en el repositorio Git.
-  - `:Buffers` - Muestra una lista de buffers abiertos.
+### 🔍 Fuzzy Finder
 
-## Autocompletado y Lenguajes
+- **`fzf`**: Buscador difuso para encontrar archivos rápidamente.
+  - **Comando**: `:FZF` - Busca archivos en el directorio actual.
 
-### `coc.nvim`
-- **Descripción**: Proporciona autocompletado y soporte para múltiples lenguajes.
-- **Comando**: `:CocInstall <extension>` - Instala extensiones para diferentes lenguajes.
-- **Atajos**:
-  - `Tab` - Completar la sugerencia.
-  - `Shift + Tab` - Revertir la sugerencia.
+- **`fzf.vim`**: Integración de `fzf` con Vim.
+  - **Comandos**:
+    - `:Files` - Buscar archivos.
+    - `:GFiles` - Buscar archivos en un repositorio Git.
+    - `:Buffers` - Listar buffers abiertos.
 
-### `vim-polyglot`
-- **Descripción**: Soporte para múltiples lenguajes de programación.
-- **Uso**: Se activa automáticamente al abrir archivos de diferentes lenguajes.
+### 🔄 Autocompletado y Lenguajes
 
-## Control de Versiones
+- **`coc.nvim`**: Proporciona autocompletado y soporte para múltiples lenguajes.
+  - **Comando**: `:CocInstall <extension>` - Instalar extensiones de lenguajes.
+  - **Atajos**:
+    - `Tab` - Completar sugerencias.
+    - `Shift + Tab` - Revertir la sugerencia.
 
-### `vim-gitgutter`
-- **Descripción**: Muestra indicadores de cambios en Git en la columna de la izquierda.
-- **Comandos**:
-  - `]c` - Ir al siguiente cambio.
-  - `[c` - Ir al cambio anterior.
+- **`vim-polyglot`**: Soporte para varios lenguajes de programación.
+  - **Uso**: Se activa automáticamente.
 
-## Edición de Código
+### 🔧 Control de Versiones
 
-### `emmet-vim`
-- **Descripción**: Expansión de abreviaturas HTML/CSS.
-- **Comando**: Escribe una abreviatura y presiona `Ctrl + Y, E` para expandir.
+- **`vim-gitgutter`**: Muestra cambios de Git en la columna lateral.
+  - **Comandos**:
+    - `]c` - Siguiente cambio.
+    - `[c` - Cambio anterior.
 
-### `vim-surround`
-- **Descripción**: Manejo de pares de caracteres (comillas, paréntesis, etc.).
-- **Comandos**:
-  - `cs"'` - Cambia el entorno de comillas dobles a simples.
-  - `ds"` - Elimina las comillas alrededor de la palabra.
+### ✏️ Edición de Código
 
-### `vim-commentary`
-- **Descripción**: Facilita la creación y eliminación de comentarios.
-- **Comando**: `gcc` - Comentar o descomentar la línea actual.
+- **`emmet-vim`**: Expande abreviaturas HTML/CSS.
+  - **Comando**: `Ctrl + Y, E` - Expande abreviaturas.
 
-### `nerdtree`
-- **Descripción**: Explorador de archivos.
-- **Comandos**:
-  - `:NERDTreeToggle` - Abre o cierra NERDTree.
-  - `o` - Abre el archivo seleccionado.
+- **`vim-surround`**: Manipula pares de caracteres.
+  - **Comandos**:
+    - `cs"'` - Cambia comillas dobles a simples.
+    - `ds"` - Elimina las comillas.
 
-### `indentLine`
-- **Descripción**: Muestra líneas de indentación.
-- **Uso**: Se activa automáticamente al abrir archivos.
+- **`vim-commentary`**: Facilita comentar/descomentar líneas.
+  - **Comando**: `gcc` - Comentar o descomentar.
 
-### `vim-closetag`
-- **Descripción**: Cierra automáticamente las etiquetas HTML.
-- **Uso**: Al escribir `<div>`, se completará automáticamente a `<div></div>`.
+- **`nerdtree`**: Explorador de archivos en Neovim.
+  - **Comando**: `:NERDTreeToggle` - Abrir/cerrar NERDTree.
 
-### `auto-pairs`
-- **Descripción**: Cierra automáticamente los pares de caracteres.
-- **Uso**: Al escribir `{`, se completará automáticamente a `{}`.
+- **`vim-closetag`**: Cierra automáticamente etiquetas HTML.
 
-## Navegación
+- **`auto-pairs`**: Cierra automáticamente pares de caracteres como `{}` o `[]`.
 
-### `vim-tmux-navigator`
-- **Descripción**: Permite navegar entre Vim y Tmux.
-- **Comandos**:
-  - `Ctrl + h/j/k/l` - Navega entre paneles de Tmux y ventanas de Vim.
+### 🧭 Navegación
 
-## Temas
+- **`vim-tmux-navigator`**: Navega entre Tmux y Vim.
+  - **Comandos**: `Ctrl + h/j/k/l` para navegar entre paneles.
 
-### `Mies.vim`
-- **Descripción**: Un tema para personalizar la apariencia de Vim.
-- **Uso**: Se activa automáticamente al cargar Vim.
+### 🎨 Temas
 
-## Comentarios
+- **`Mies.vim`**: Tema visual para personalizar la apariencia de Neovim.
+  - **Uso**: Se activa automáticamente al cargar.
 
-### `nerdcommenter`
-- **Descripción**: Alternativa a `vim-commentary` para comentar código.
-- **Comandos**:
-  - `,cc` - Comentar la línea actual.
-  - `,cu` - Descomentar la línea actual.
+### 💬 Comentarios
 
-## Mapeo de Teclas
+- **`nerdcommenter`**: Otra opción para comentar/descomentar código.
+  - **Comandos**:
+    - `,cc` - Comentar.
+    - `,cu` - Descomentar.
 
-### Configuración de Mapeo
+---
+
+## Mapeos de Teclas Personalizados ⌨️
+
 ```vim
 let mapleader=" "
-Comandos Personalizados
-Leader + w - Guardar el archivo actual.
-Leader + q - Cerrar Vim.
-Ctrl + c (en modo visual) - Copiar la selección al portapapeles (requiere xclip en Linux).
-Leader + ; - Insertar un ; al final de la línea actual.
-Leader + / - Limpiar la búsqueda actual.
-Leader + f - Formatear todo el código desde la posición actual.
-Leader + F - Formatear el código actual.
-Leader + rn - Alternar entre números de línea relativos y absolutos.
-Leader + pp - Alternar entre el modo de revisión de ortografía.
-Leader + z - Ir al final de la pantalla.
-Ctrl + p - Copiar la ruta completa del archivo actual al portapapeles.
-Leader + nt - Abrir NERDTree en la ruta actual.
-Alt + j - Mover la línea actual hacia abajo.
-Alt + k - Mover la línea actual hacia arriba.
 ```
+- **Guardado**: `Leader + w` - Guardar archivo.
+- **Cerrar**: `Leader + q` - Cerrar Neovim.
+- **Copiar**: `Ctrl + c` (modo visual) - Copiar al portapapeles.
+- **Formatear**: `Leader + f` - Formatear código.
+- **Navegación de NERDTree**: `Leader + nt` - Abrir NERDTree.
+- **Mover líneas**: `Alt + j` / `Alt + k` - Mover líneas hacia abajo/arriba.
+
+---
+
+¡Gracias por visitar este repositorio! ✨
+
+---
+
+Este `README.md` tiene una estructura más clara y organizada para que sea fácil de seguir y atractivo a la vista. Puedes ajustarlo a las necesidades de tu repositorio o agregar más secciones si lo necesitas.
