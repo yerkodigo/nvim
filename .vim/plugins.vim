@@ -22,4 +22,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'alvan/vim-closetag' "HTML close tags <div> --> <div></div>
 Plug 'jiangmiao/auto-pairs'  "Syntax close { --> {}
 
+"Git
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+
 call plug#end()
