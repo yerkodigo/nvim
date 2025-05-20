@@ -43,3 +43,12 @@ vim.keymap.set("n", "<leader>f", ":set filetype<CR>gg=G", { desc = "Reconfigurar
 
 -- Identar alrededor del cursor
 vim.keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor" })
+
+-- COMENTARIOS
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Comentar línea actual
+map("n", "<Leader>c<Leader>", "gcc", { noremap = false, silent = true })
+-- Comentar selección
+map("v", "<Leader>c<Leader>", "gc", { noremap = false, silent = true })
