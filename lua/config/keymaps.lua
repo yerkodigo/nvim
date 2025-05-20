@@ -12,3 +12,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Mover foco a la ventana arriba"
 vim.keymap.set("n", "<leader>ag", function()
   require("telescope.builtin").live_grep()
 end, { desc = "Buscar palabra o frase en todo el proyecto" })
+
+vim.keymap.set("n", "<leader>p", function()
+  require("telescope.builtin").find_files()
+end, { desc = "Buscar archivos por nombre" })
+
