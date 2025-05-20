@@ -17,3 +17,20 @@ vim.keymap.set("n", "<leader>p", function()
   require("telescope.builtin").find_files()
 end, { desc = "Buscar archivos por nombre" })
 
+-- Abrir nueva tab en raíz del proyecto (donde está .git)
+vim.keymap.set("n", "<C-n>", function()
+  vim.cmd("tabnew")        -- Abre nueva tab
+  vim.cmd("enew")          -- Abre un buffer vacío (sin el buffer heredado)
+  vim.cmd("Neotree toggle")-- Abre Neo-tree
+end, { desc = "Nueva tab con Neo-tree" })
+
+-- Moverse entre tabs con Ctrl + flechas
+vim.keymap.set("n", "<C-Left>", ":tabprevious<CR>", { desc = "Tab anterior" })
+vim.keymap.set("n", "<C-Right>", ":tabnext<CR>", { desc = "Siguiente tab" })
+
+-- Guardar archivo
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
+vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
+
+-- Cerrar buffer o ventana
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Cerrar ventana/tab" })
