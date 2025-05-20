@@ -9,3 +9,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Mover foco a la ventana derecha
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Mover foco a la ventana abajo" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Mover foco a la ventana arriba" })
 
+vim.keymap.set("n", "<leader>ag", function()
+  require("telescope.builtin").live_grep()
+end, { desc = "Buscar palabra o frase en todo el proyecto" })
