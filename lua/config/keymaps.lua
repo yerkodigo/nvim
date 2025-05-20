@@ -34,3 +34,12 @@ vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
 
 -- Cerrar buffer o ventana
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Cerrar ventana/tab" })
+
+-- Copiar al portapapeles del sistema desde modo visual
+vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copiar al portapapeles" })
+
+-- Reconfigurar el filetype y autoformatear todo el archivo
+vim.keymap.set("n", "<leader>f", ":set filetype<CR>gg=G", { desc = "Reconfigurar filetype y formatear archivo" })
+
+-- Identar alrededor del cursor
+vim.keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor" })
