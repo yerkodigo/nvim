@@ -31,6 +31,14 @@ return {
       highlight TabLine guibg=none
       highlight LineNr guibg=none
       ]])
+
+      vim.opt.cursorline = true
+      vim.opt.cursorcolumn = true
+
+      vim.cmd([[
+      highlight CursorLine ctermbg=254 guibg=#e0e0e0
+      highlight CursorColumn ctermbg=254 guibg=#e0e0e0
+      ]])
     end,
   },
   {
