@@ -4,7 +4,11 @@ return {
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
-    opts = {},
+    opts = {
+      indent = {
+        char = "¦"
+      }
+    },
   },
   {
     "numToStr/Comment.nvim",
