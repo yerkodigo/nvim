@@ -64,5 +64,30 @@ return {
         extensions = {},
       })
     end,
+  },
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup({
+        easing_function = "quadratic",
+        hide_cursor = true,
+        stop_eof = true,
+      })
+
+      local neoscroll = require("neoscroll")
+      local config = require("neoscroll.config")
+
+      local t = {}
+
+      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
+      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
+      t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "300" } }
+      t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "300" } }
+      t["zt"]    = { "zt", { "250" } }
+      t["zz"]    = { "zz", { "250" } }
+      t["zb"]    = { "zb", { "250" } }
+
+      config.set_mappings(t)
+    end,
   }
 }
