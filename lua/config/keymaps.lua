@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "<leader>nt", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+vim.keymap.set("n", "<leader>nt", ":Neotree reveal=true toggle<CR>", { desc = "Toggle Neo-tree en ubicación actual" })
 
 -- Moverse entre ventanas con Ctrl + h/j/k/l
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Mover foco a la ventana izquierda" })
@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
 vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
 
 -- Cerrar buffer o ventana
-vim.keymap.set("n", "<leader>q", ":wq<CR>", { desc = "Cerrar ventana/tab" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Cerrar ventana/tab" })
 
 -- Copiar al portapapeles del sistema desde modo visual
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copiar al portapapeles" })
