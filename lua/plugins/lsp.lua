@@ -5,7 +5,11 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "tsserver", "angularls", "volar" } -- Agrega volar aquí
+        ensure_installed = {
+          "ts_ls",
+          "vue_ls",
+          "angularls",
+        }
       })
     end
   },

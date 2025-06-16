@@ -47,36 +47,46 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- para iconos opcionales
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- Iconos opcionales
+    },
     config = function()
-      require("lualine").setup({
-        options = {
-          theme = "onelight", -- respeta los colores del colorscheme actual
-          section_separators = "",
-          component_separators = "",
-          globalstatus = true, -- barra única en lugar de una por ventana
-        },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
-          lualine_c = { { "filename", path = 1 } },
-          lualine_x = { "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { "filename" },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {},
-        },
-        tabline = {},
-        extensions = {},
-      })
+      require("config.lualine")
     end,
+    event = "VeryLazy", -- o "BufEnter" si querés que cargue al abrir archivos
   },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" }, -- para iconos opcionales
+  --   config = function()
+  --     require("lualine").setup({
+  --       options = {
+  --         theme = "onelight", -- respeta los colores del colorscheme actual
+  --         section_separators = "",
+  --         component_separators = "",
+  --         globalstatus = true, -- barra única en lugar de una por ventana
+  --       },
+  --       sections = {
+  --         lualine_a = {'mode'},
+  --         lualine_b = {'branch', 'diff', 'diagnostics'},
+  --         lualine_c = {'filename'},
+  --         lualine_x = {'encoding', 'fileformat', 'filetype'},
+  --         lualine_y = {'progress'},
+  --         lualine_z = {'location'}
+  --       },
+  --       inactive_sections = {
+  --         lualine_a = {},
+  --         lualine_b = {},
+  --         lualine_c = { "filename" },
+  --         lualine_x = { "location" },
+  --         lualine_y = {},
+  --         lualine_z = {},
+  --       },
+  --       tabline = {},
+  --       extensions = {},
+  --     })
+  --   end,
+  -- },
   {
     "karb94/neoscroll.nvim",
     config = function()
@@ -84,22 +94,8 @@ return {
         easing_function = "quadratic",
         hide_cursor = true,
         stop_eof = true,
+        mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "zt", "zz", "zb" }
       })
-
-      local neoscroll = require("neoscroll")
-      local config = require("neoscroll.config")
-
-      local t = {}
-
-      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
-      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
-      t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "300" } }
-      t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "300" } }
-      t["zt"]    = { "zt", { "250" } }
-      t["zz"]    = { "zz", { "250" } }
-      t["zb"]    = { "zb", { "250" } }
-
-      config.set_mappings(t)
     end,
   }
 }
