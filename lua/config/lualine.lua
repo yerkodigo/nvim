@@ -47,7 +47,21 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
+  tabline = {
+    lualine_a = {
+      {
+        'tabs',
+        mode = 2, -- 0 = numero, 1 = ruta relativa, 2 = nombre archivo
+        tabs_color = {
+          active = 'lualine_a_normal',
+          inactive = 'lualine_b_inactive',
+        },
+        fmt = function(name)
+          return vim.fn.fnamemodify(name, ':t')
+        end,
+      },
+    },
+  },
   winbar = {},
   inactive_winbar = {},
   extensions = {}
