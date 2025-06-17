@@ -28,6 +28,9 @@ end, { desc = "Nueva tab con Neo-tree" })
 vim.keymap.set("n", "<C-Left>", ":tabprevious<CR>", { desc = "Tab anterior" })
 vim.keymap.set("n", "<C-Right>", ":tabnext<CR>", { desc = "Siguiente tab" })
 
+vim.keymap.set("n", "<C-H>", ":tabprevious<CR>", { desc = "Tab anterior" })
+vim.keymap.set("n", "<C-L>", ":tabnext<CR>", { desc = "Siguiente tab" })
+
 -- Guardar archivo
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
 vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
