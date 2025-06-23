@@ -12,6 +12,10 @@ return {
         },
         -- Opcional: actualiza más rápido al guardar archivos
         update_debounce = 100,
+        watch_gitdir = {
+          interval = 1000,
+          follow_files = true,
+        }
       })
     end,
   },
