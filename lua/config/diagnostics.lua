@@ -1,22 +1,20 @@
 vim.diagnostic.config({
-  virtual_text = false, -- 👈 desactiva los mensajes inline, si prefieres
-  signs = true,         -- muestra íconos en la columna izquierda
-  underline = true,     -- subraya los errores
-  update_in_insert = false, -- no actualizar en modo insert
-  severity_sort = true, -- prioriza errores sobre warnings
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
 
--- Autocomando para mostrar tooltip de error al dejar el cursor quieto
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     vim.diagnostic.open_float(nil, {
-      focusable = false, -- no roba el foco
+      focusable = false,
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
       border = "rounded",
-      source = "always", -- muestra qué plugin o fuente originó el error
+      source = "always",
       prefix = " ",
-      scope = "cursor",
+      scope = "line", -- muestra el error en la linea con 'line', solo en el error 'cursor'
     })
   end,
 })
-
