@@ -25,8 +25,8 @@ vim.keymap.set("n", "<C-n>", function()
 end, { desc = "Nueva tab con Neo-tree" })
 
 -- Moverse entre tabs con Ctrl + flechas
-vim.keymap.set("n", "<C-Left>", ":tabprevious<CR>", { desc = "Tab anterior" })
-vim.keymap.set("n", "<C-Right>", ":tabnext<CR>", { desc = "Siguiente tab" })
+vim.keymap.set("n", "<M-h>", ":tabprevious<CR>", { desc = "Tab anterior" })
+vim.keymap.set("n", "<M-l>", ":tabnext<CR>", { desc = "Siguiente tab" })
 
 -- vim.keymap.set("n", "<C-H>", ":tabprevious<CR>", { desc = "Tab anterior" })
 -- vim.keymap.set("n", "<C-L>", ":tabnext<CR>", { desc = "Siguiente tab" })
