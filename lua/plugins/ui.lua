@@ -21,28 +21,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.opt.background = "light"
-      vim.cmd("colorscheme mies")
-
-      -- Fondo transparente para la terminal
-      vim.cmd([[
-      highlight Normal guibg=none
-      highlight NormalNC guibg=none
-      highlight NormalFloat guibg=none
-      highlight VertSplit guibg=none
-      highlight SignColumn guibg=none
-      highlight StatusLine guibg=none
-      highlight TabLine guibg=none
-      highlight LineNr guibg=none
-      ]])
-
-      vim.opt.cursorline = true
-      vim.opt.cursorcolumn = true
-
-      vim.cmd([[
-      highlight CursorLine ctermbg=254 guibg=#e0e0e0
-      highlight CursorColumn ctermbg=254 guibg=#e0e0e0
-      ]])
+      require("config.theme").setup()
     end,
   },
   {
