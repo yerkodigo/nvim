@@ -11,3 +11,5 @@ vim.opt.smartcase = true
 
 -- Reduce el tiempo de espera para eventos CursorHold a 1 segundo
 vim.o.updatetime = 1000
+
+vim.opt.wrap = true

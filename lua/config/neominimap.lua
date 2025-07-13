@@ -71,7 +71,7 @@ vim.g.neominimap = {
   --- Either `split` or `float`
   --- When layout is set to `float`, minimaps will be created in floating windows attached to all suitable windows.
   --- When layout is set to `split`, the minimap will be created in one split window per tab.
-  layout = "float", ---@type Neominimap.Config.LayoutType
+  layout = "split", ---@type Neominimap.Config.LayoutType
 
   --- Used when `layout` is set to `split`
   split = {
