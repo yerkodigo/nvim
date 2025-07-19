@@ -20,18 +20,6 @@ function M.setup()
   vim.opt.background = "dark"
   vim.cmd("colorscheme mies")
 
-  -- Fondo transparente para la terminal
-  -- vim.cmd([[
-  -- highlight Normal guibg=none
-  -- highlight NormalNC guibg=none
-  -- highlight NormalFloat guibg=none
-  -- highlight VertSplit guibg=none
-  -- highlight SignColumn guibg=none
-  -- highlight StatusLine guibg=none
-  -- highlight TabLine guibg=none
-  -- highlight LineNr guibg=none
-  -- ]])
-
   vim.opt.cursorline = true
   vim.opt.cursorcolumn = true
 
