@@ -5,5 +5,4 @@ require("config.diagnostics")
 
 -- TODO llamar configuraciones desde su archivo correspondiente de plugin
 require("config.explorer")
-require("config.harpoon")
 require("config.telescope")
