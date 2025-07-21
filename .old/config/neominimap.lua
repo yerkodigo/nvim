@@ -35,19 +35,28 @@ vim.g.neominimap = {
     "prompt",
   },
 
-  -- When this function returns false, the minimap will not be created for this buffer.
+  -- Cuando esta función retorna false, no se crea el minimap para ese buffer.
   ---@type fun(bufnr: integer): boolean
-  buf_filter = function()
-    return true
+  buf_filter = function(bufnr)
+    local buftype = vim.api.nvim_buf_get_option(bufnr, "buftype")
+    local exclude = {
+      ["nofile"] = true,
+      ["nowrite"] = true,
+      ["quickfix"] = true,
+      ["terminal"] = true,
+      ["prompt"] = true,
+    }
+    -- Solo crear el minimap si el buftype es vacío (buffer normal)
+    return not exclude[buftype]
   end,
 
-  -- When this function returns false, the minimap will not be created for this window.
+  -- Cuando esta función retorna false, no se crea el minimap en esa ventana.
   ---@type fun(winid: integer): boolean
   win_filter = function()
     return true
   end,
 
-  -- When this function returns false, the minimap will not be created for this tab.
+  -- Cuando esta función retorna false, no se crea el minimap en esa tab.
   ---@type fun(tabid: integer): boolean
   tab_filter = function()
     return true
@@ -60,95 +69,48 @@ vim.g.neominimap = {
   y_multiplier = 1, ---@type integer
 
   buffer = {
-    -- When true, the minimap will be recreated when you delete the buffer.
-    -- When false, the minimap will be disabled for the current buffer when you delete the minimap buffer.
+    -- Cuando es true, el minimap se recrea cuando borras el buffer.
+    -- Cuando es false, se desactiva el minimap para el buffer actual cuando borras el buffer del minimap.
     persist = true, ---@type boolean
   },
-
 
   ---@alias Neominimap.Config.LayoutType "split" | "float"
 
   --- Either `split` or `float`
-  --- When layout is set to `float`, minimaps will be created in floating windows attached to all suitable windows.
-  --- When layout is set to `split`, the minimap will be created in one split window per tab.
   layout = "split", ---@type Neominimap.Config.LayoutType
 
-  --- Used when `layout` is set to `split`
   split = {
     minimap_width = 20, ---@type integer
-
-    -- Always fix the width of the split window
     fix_width = false, ---@type boolean
-
-    ---@alias Neominimap.Config.SplitDirection "left" | "right" | "topleft" | "botright" | "aboveleft" | "rightbelow"
     direction = "right", ---@type Neominimap.Config.SplitDirection
-
-    --- Automatically close the split window when it is the last window.
     close_if_last_window = false, ---@type boolean
-
-    --- When true, the split window will be recreated when you close it.
-    --- When false, the minimap will be disabled for the current tab when you close the minimap window.
     persist = true, ---@type boolean
   },
 
-  --- Used when `layout` is set to `float`
   float = {
     minimap_width = 20, ---@type integer
-
-    --- If set to nil, there is no maximum height restriction
-    --- @type integer
     max_minimap_height = nil,
-
     margin = {
       right = 0, ---@type integer
       top = 0, ---@type integer
       bottom = 0, ---@type integer
     },
     z_index = 1, ---@type integer
-
-    --- Border style of the floating window.
-    --- Accepts all usual border style options (e.g., "single", "double")
-    --- @type string | string[] | [string, string][]
     window_border = vim.fn.has("nvim-0.11") == 1 and vim.opt.winborder:get() or "single",
-
-    -- When true, the floating window will be recreated when you close it.
-    -- When false, the minimap will be disabled for the current tab when you close the minimap window.
     persist = true, ---@type boolean
   },
 
-  -- For performance, when text changes, the minimap is refreshed after a certain delay.
-  -- Set the delay in milliseconds
   delay = 200, ---@type integer
-
-  -- Sync the cursor position with the minimap
   sync_cursor = true, ---@type boolean
 
   click = {
-    -- Enable mouse click on the minimap
     enabled = false, ---@type boolean
-    -- Automatically switch focus to the minimap when clicked
     auto_switch_focus = true, ---@type boolean
   },
 
   diagnostic = {
     enabled = true, ---@type boolean
-
-    -- When enabled, diagnostics will be sourced directly from the DiagnosticChanged event,
-    -- meaning they will follow the settings from vim.diagnostic.config.
-    -- In this mode, the `severity` filter is ignored.
     use_event_diagnostics = false, ---@type boolean
-
-    -- The `severity` option specifies which diagnostics to include based on their severity.
-    -- Note: This option is ignored when `use_event_diagnostics` is enabled.
-    --
-    -- Allowed formats for the `severity` filter:
-    -- 1. A single severity level:
-    --      eg: severity = vim.diagnostic.severity.WARN
-    -- 2. A table with a "min" and/or "max" key:
-    --      eg: severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR }
-    -- 3. A list-like table of severity values:
-    --      eg: severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR }
-    ---@see vim.diagnostic.severity
     severity = nil, ---@type vim.diagnostic.SeverityFilter?
     mode = "line", ---@type Neominimap.Handler.Annotation.Mode
     priority = {
@@ -204,24 +166,14 @@ vim.g.neominimap = {
     mode = "icon", ---@type Neominimap.Handler.Annotation.Mode
     priority = 10, ---@type integer
     key = "m", ---@type string
-    show_builtins = false, ---@type boolean -- shows the builtin marks like [ ] < >
+    show_builtins = false, ---@type boolean
   },
 
   fold = {
-    -- Consider folds when rendering the minimap
     enabled = true, ---@type boolean
   },
 
-  --- Override the default window options
-  ---@param opt vim.wo
-  ---@param winid integer the window id of the source window, NOT the minimap window
   winopt = function(opt, winid) end,
-
-  --- Override the default buffer options
-  ---@param opt vim.bo
-  ---@param bufnr integer the buffer id of the source buffer, NOT the minimap buffer
   bufopt = function(opt, bufnr) end,
-
-  ---@type Neominimap.Map.Handler[]
   handlers = {},
 }

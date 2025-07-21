@@ -1,9 +1,10 @@
-require("config.keymaps")
-require("config.lazy")
-require("config.options")
-require("config.diagnostics")
+require("yerkodigo.core")
+require("yerkodigo.lazy")
 
--- TODO llamar configuraciones desde su archivo correspondiente de plugin
-require("config.explorer")
-require("config.harpoon")
-require("config.telescope")
+--require("yerkodigo.config.keymaps")
+--require("yerkodigo.config.diagnostics")
+
+-- TODO: llamar configuraciones desde su archivo correspondiente de plugin
+
+--require("yerkodigo.config.explorer")
+--require("yerkodigo.config.telescope")

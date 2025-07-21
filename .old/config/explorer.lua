@@ -9,4 +9,3 @@ require("neo-tree").setup({
     },
   },
 })
-
