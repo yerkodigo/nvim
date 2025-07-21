@@ -82,10 +82,22 @@ return {
         ["volar"] = function()
           lspconfig["volar"].setup({
             capabilities = capabilities,
-            filetypes = { "vue", "typescript", "javascript" },
+            filetypes = { "vue" },
             init_options = {
               vue = {
                 hybridMode = false,
+              },
+              typescript = {
+                tsdk = ""
+              }
+            },
+            settings = {
+              vue = {
+                server = {
+                  vitePress = {
+                    supportMdFile = true,
+                  },
+                },
               },
             },
           })
@@ -139,7 +151,14 @@ return {
             filetypes = { "json", "jsonc" },
             settings = {
               json = {
-                schemas = require("schemastore").json.schemas(),
+                schemas = (function()
+                  local ok, schemastore = pcall(require, "schemastore")
+                  if ok then
+                    return schemastore.json.schemas()
+                  else
+                    return {}
+                  end
+                end)(),
                 validate = { enable = true },
               },
             },
