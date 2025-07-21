@@ -5,6 +5,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
+    "b0o/schemastore.nvim", -- JSON schemas
   },
   config = function()
     -- Import plugins
@@ -68,18 +69,36 @@ return {
           lspconfig["emmet_ls"].setup({
             capabilities = capabilities,
             filetypes = { "html", "css", "scss", "sass", "less", "typescriptreact", "javascriptreact", "vue" },
+            init_options = {
+              html = {
+                options = {
+                  -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                  ["bem.enabled"] = true,
+                },
+              },
+            },
           })
         end,
-        -- ["volar"] = function()
-        --   lspconfig["volar"].setup({
-        --     capabilities = capabilities,
-        --     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-        --   })
-        -- end,
+        ["volar"] = function()
+          lspconfig["volar"].setup({
+            capabilities = capabilities,
+            filetypes = { "vue", "typescript", "javascript" },
+            init_options = {
+              vue = {
+                hybridMode = false,
+              },
+            },
+          })
+        end,
         ["tsserver"] = function()
           lspconfig["tsserver"].setup({
             capabilities = capabilities,
             filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+            init_options = {
+              preferences = {
+                disableSuggestions = true,
+              },
+            },
           })
         end,
         ["html"] = function()
@@ -92,6 +111,47 @@ return {
           lspconfig["cssls"].setup({
             capabilities = capabilities,
             filetypes = { "css", "scss", "sass", "less", "vue" },
+            settings = {
+              css = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+              scss = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+              less = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+            },
+          })
+        end,
+        ["jsonls"] = function()
+          lspconfig["jsonls"].setup({
+            capabilities = capabilities,
+            filetypes = { "json", "jsonc" },
+            settings = {
+              json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+              },
+            },
+          })
+        end,
+        ["eslint"] = function()
+          lspconfig["eslint"].setup({
+            capabilities = capabilities,
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+            settings = {
+              workingDirectory = { mode = "auto" },
+            },
           })
         end,
         ["lua_ls"] = function()
