@@ -24,18 +24,23 @@ return {
         "html",
         "cssls",
         "emmet_ls",
-        -- "tsserver", Intalar manualmente typescript: 
-        -- npm install -g typescript typescript-language-server
-        -- npm install -g @vue/language-server
+        "tsserver",     -- TypeScript/JavaScript language server
+        "volar",        -- Vue 3 language server with TypeScript support
+        "jsonls",       -- JSON language server
+        "eslint",       -- ESLint language server
         "lua_ls",
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "prettier",   -- formatter
-        "eslint_d",   -- fast eslint
-        -- Agrega otras herramientas que prefieras aquí
+        "prettier",     -- formatter for JS, TS, Vue, HTML, CSS, JSON
+        "eslint_d",     -- fast eslint daemon
+        "vue-language-server", -- Vue language server
+        "typescript-language-server", -- TypeScript language server
+        "vscode-langservers-extracted", -- HTML, CSS, JSON, ESLint language servers
+        "stylelint",    -- CSS linter
+        "js-debug-adapter", -- JavaScript debugger
       },
     })
   end,
