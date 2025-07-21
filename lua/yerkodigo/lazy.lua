@@ -12,5 +12,10 @@ if not (vim.loop or vim.uv).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("yerkodigo.plugins")
+require("lazy").setup("yerkodigo.plugins", {
+  checker = {
+    enabled = true,
+    notify = false,
+  }
+})
 
