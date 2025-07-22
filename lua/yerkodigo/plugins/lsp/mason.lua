@@ -1,42 +1,25 @@
 return {
-  "williamboman/mason.nvim",
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  {
+    "mason-org/mason.nvim",
+    cmd = "Mason",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    build = ":MasonUpdate",
+    opts_extend = { "ensure_installed" },
+    opts = {
+      ensure_installed = {
+        "stylua",    -- formateador Lua
+        "shfmt",     -- formateador shell
+        -- Agrega aquí otros linters, formatters o servidores LSP que quieras instalar con mason
+      },
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+      local mr = require("mason-registry")
+      mr:on("package:install:success", function()
+        vim.defer_fn(function()
+          vim.cmd("MasonUpdate") -- Actualiza Mason cuando se instala un paquete
+        end, 100)
+      end)
+    end,
   },
-  config = function()
-    local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
-    local mason_tool_installer = require("mason-tool-installer")
-
-    mason.setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      },
-    })
-
-    mason_lspconfig.setup({
-      ensure_installed = {
-        "html",
-        "cssls",
-        "emmet_ls",
-        -- "tsserver", Intalar manualmente typescript: 
-        -- npm install -g typescript typescript-language-server
-        -- npm install -g @vue/language-server
-        "lua_ls",
-      },
-    })
-
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier",   -- formatter
-        "eslint_d",   -- fast eslint
-        -- Agrega otras herramientas que prefieras aquí
-      },
-    })
-  end,
 }

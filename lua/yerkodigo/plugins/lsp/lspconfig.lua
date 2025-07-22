@@ -1,111 +1,119 @@
 return {
-  "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
-  },
-  config = function()
-    -- Import plugins
-    local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local keymap = vim.keymap
-
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        local opts = { buffer = ev.buf, silent = true }
-
-        opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
-        opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-        opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-        opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
-        opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-        opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-        opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-        opts.desc = "Show documentation for what is under cursor"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-      end,
-    })
-
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- Diagnostic symbols
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
-    mason_lspconfig.setup({
-      handlers = {
-        function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-        ["emmet_ls"] = function()
-          lspconfig["emmet_ls"].setup({
-            capabilities = capabilities,
-            filetypes = { "html", "css", "scss", "sass", "less", "typescriptreact", "javascriptreact", "vue" },
-          })
-        end,
-        -- ["volar"] = function()
-        --   lspconfig["volar"].setup({
-        --     capabilities = capabilities,
-        --     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-        --   })
-        -- end,
-        ["tsserver"] = function()
-          lspconfig["tsserver"].setup({
-            capabilities = capabilities,
-            filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-          })
-        end,
-        ["html"] = function()
-          lspconfig["html"].setup({
-            capabilities = capabilities,
-            filetypes = { "html", "vue" },
-          })
-        end,
-        ["cssls"] = function()
-          lspconfig["cssls"].setup({
-            capabilities = capabilities,
-            filetypes = { "css", "scss", "sass", "less", "vue" },
-          })
-        end,
-        ["lua_ls"] = function()
-          lspconfig["lua_ls"].setup({
-            capabilities = capabilities,
+  -- Plugin principal
+  {
+    "neovim/nvim-lspconfig",
+    -- event = "LazyFile",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "mason.nvim" },
+      { "mason-org/mason-lspconfig.nvim", config = function() end },
+    },
+    opts = function()
+      local ret = {
+        diagnostics = {
+          underline = true,
+          update_in_insert = false,
+          virtual_text = {
+            spacing = 4,
+            source = "if_many",
+            prefix = "●",
+          },
+          severity_sort = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = "",
+              [vim.diagnostic.severity.WARN]  = "",
+              [vim.diagnostic.severity.HINT]  = "",
+              [vim.diagnostic.severity.INFO]  = "",
+            },
+          },
+        },
+        -- Inlay hints y code lens para Neovim >= 0.10.0
+        inlay_hints = {
+          enabled = true,
+          exclude = { "vue" },
+        },
+        codelens = {
+          enabled = false,
+        },
+        capabilities = {},
+        workspace = {
+          fileOperations = {
+            didRename = true,
+            willRename = true,
+          },
+        },
+        format = {
+          formatting_options = nil,
+          timeout_ms = nil,
+        },
+        -- Aquí puedes añadir y configurar los servidores LSP
+        servers = {
+          lua_ls = {
             settings = {
               Lua = {
-                diagnostics = { globals = { "vim" } },
+                workspace = { checkThirdParty = false },
+                codeLens = { enable = true },
                 completion = { callSnippet = "Replace" },
+                doc = { privateName = { "^_" } },
+                hint = {
+                  enable = true,
+                  setType = false,
+                  paramType = true,
+                  paramName = "Disable",
+                  semicolon = "Disable",
+                  arrayIndex = "Disable",
+                },
               },
             },
-          })
-        end,
-      },
-    })
-  end,
+          },
+          -- Agrega aquí otros servidores LSP que necesites (ejemplo: tsserver, pyright, etc.)
+        },
+        setup = {
+          -- Aquí puedes personalizar la configuración de cada servidor LSP si lo necesitas.
+          -- ["tsserver"] = function(_, opts) ... end,
+        },
+      }
+      return ret
+    end,
+    config = function(_, opts)
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+      -- Setup para cada servidor LSP
+      local servers = opts.servers
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        opts.capabilities or {}
+      )
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", { capabilities = vim.deepcopy(capabilities) }, servers[server] or {})
+        if server_opts.enabled == false then return end
+        if opts.setup[server] and opts.setup[server](server, server_opts) then return end
+        require("lspconfig")[server].setup(server_opts)
+      end
+      -- Si tienes mason-lspconfig, instala y configura los servidores automáticamente
+      local have_mason, mlsp = pcall(require, "mason-lspconfig")
+      
+      -- local all_mslp_servers = have_mason and vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package) or {}
+      local all_mslp_servers = require("mason-lspconfig").get_available_servers()
+      
+      local ensure_installed = {}
+      for server, server_opts in pairs(servers) do
+        if server_opts and server_opts.enabled ~= false then
+          if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+            setup(server)
+          else
+            table.insert(ensure_installed, server)
+          end
+        end
+      end
+      if have_mason then
+        mlsp.setup({
+          ensure_installed = ensure_installed,
+          handlers = { setup },
+        })
+      end
+    end,
+  },
 }
