@@ -1,10 +1,16 @@
-require("yerkodigo.core")
-require("yerkodigo.lazy")
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
---require("yerkodigo.config.keymaps")
---require("yerkodigo.config.diagnostics")
-
--- TODO: llamar configuraciones desde su archivo correspondiente de plugin
-
---require("yerkodigo.config.explorer")
---require("yerkodigo.config.telescope")
+-- Configuración inicial
+require("config")
