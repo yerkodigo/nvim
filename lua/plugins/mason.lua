@@ -2,6 +2,7 @@ return {
   {
     "mason-org/mason.nvim",
     cmd = "Mason",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     opts = {
@@ -34,4 +35,8 @@ return {
       end)
     end,
   },
+
+  -- pin to v1 for now (como en LazyVim original)
+  { "mason-org/mason.nvim", version = "^1.0.0" },
+  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 }

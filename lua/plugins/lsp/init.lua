@@ -28,16 +28,16 @@ return {
             },
           },
         },
-        -- Enable inlay hints
+        -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
         inlay_hints = {
           enabled = true,
           exclude = { "vue" },
         },
-        -- Enable code lenses
+        -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
         codelens = {
           enabled = false,
         },
-        -- Global capabilities
+        -- add any global capabilities here
         capabilities = {
           workspace = {
             fileOperations = {
@@ -46,27 +46,66 @@ return {
             },
           },
         },
-        -- Format options
+        -- options for vim.lsp.buf.format
         format = {
           formatting_options = nil,
           timeout_ms = nil,
         },
         -- LSP Server Settings
-        servers = require("plugins.lsp.servers"),
-        -- Additional setup
+        servers = {
+          lua_ls = {
+            settings = {
+              Lua = {
+                workspace = {
+                  checkThirdParty = false,
+                },
+                codeLens = {
+                  enable = true,
+                },
+                completion = {
+                  callSnippet = "Replace",
+                },
+                doc = {
+                  privateName = { "^_" },
+                },
+                hint = {
+                  enable = true,
+                  setType = false,
+                  paramType = true,
+                  paramName = "Disable",
+                  semicolon = "Disable",
+                  arrayIndex = "Disable",
+                },
+              },
+            },
+          },
+        },
+        -- you can do any additional lsp server setup here
         setup = {},
       }
     end,
     config = function(_, opts)
       local Util = require("util.lsp")
       
-      -- Setup keymaps
+      -- setup keymaps
       Util.on_attach(function(client, buffer)
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
+        local map = vim.keymap.set
+        
+        map("n", "gd", vim.lsp.buf.definition, { buffer = buffer, desc = "Goto Definition" })
+        map("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "References" })
+        map("n", "gI", vim.lsp.buf.implementation, { buffer = buffer, desc = "Goto Implementation" })
+        map("n", "gy", vim.lsp.buf.type_definition, { buffer = buffer, desc = "Goto T[y]pe Definition" })
+        map("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, desc = "Goto Declaration" })
+        map("n", "K", vim.lsp.buf.hover, { buffer = buffer, desc = "Hover" })
+        map("n", "gK", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
+        map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
+        map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "Code Action" })
+        map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { buffer = buffer, desc = "Run Codelens" })
+        map("n", "<leader>cC", vim.lsp.codelens.refresh, { buffer = buffer, desc = "Refresh & Display Codelens" })
+        map("n", "<leader>cr", vim.lsp.buf.rename, { buffer = buffer, desc = "Rename" })
       end)
 
       Util.setup()
-      Util.on_dynamic_capability(require("plugins.lsp.keymaps").on_attach)
 
       -- Configure diagnostics
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -83,7 +122,6 @@ return {
         local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
         }, servers[server] or {})
-        
         if server_opts.enabled == false then
           return
         end
@@ -97,15 +135,18 @@ return {
             return
           end
         end
-        
         require("lspconfig")[server].setup(server_opts)
       end
 
-      -- Get all the servers that are available through mason-lspconfig
+      -- get all the servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       local all_mslp_servers = {}
       if have_mason then
-        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+        -- Manejo seguro del módulo mappings
+        local ok, mappings = pcall(require, "mason-lspconfig.mappings.server")
+        if ok and mappings.lspconfig_to_package then
+          all_mslp_servers = vim.tbl_keys(mappings.lspconfig_to_package)
+        end
       end
 
       local ensure_installed = {}
@@ -113,6 +154,7 @@ return {
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
+            -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
             if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
               setup(server)
             else
@@ -131,4 +173,3 @@ return {
     end,
   },
 }
-
