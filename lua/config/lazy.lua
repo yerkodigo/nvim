@@ -1,6 +1,7 @@
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    { import = "plugins.plugins" },
   },
   defaults = {
     lazy = false,

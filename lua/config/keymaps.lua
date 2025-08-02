@@ -25,3 +25,5 @@ map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- LSP
 map("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+
+map("n", "<leader>nt", ":Neotree reveal=true toggle<CR>", { desc = "Toggle Neo-tree en ubicación actual" })
