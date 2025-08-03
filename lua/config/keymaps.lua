@@ -1,6 +1,5 @@
 -- configuracion de keymaps personalizados
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+-- Las teclas leader se configuran antes de cargar la configuración de lazy.
 
 local keymap = vim.keymap
 
