@@ -86,11 +86,11 @@ return {
     end,
     config = function(_, opts)
       local Util = require("util.lsp")
-      
+
       -- setup keymaps
       Util.on_attach(function(client, buffer)
         local map = vim.keymap.set
-        
+
         map("n", "gd", vim.lsp.buf.definition, { buffer = buffer, desc = "Goto Definition" })
         map("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "References" })
         map("n", "gI", vim.lsp.buf.implementation, { buffer = buffer, desc = "Goto Implementation" })
@@ -102,7 +102,7 @@ return {
         map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "Code Action" })
         map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { buffer = buffer, desc = "Run Codelens" })
         map("n", "<leader>cC", vim.lsp.codelens.refresh, { buffer = buffer, desc = "Refresh & Display Codelens" })
-        map("n", "<leader>cr", vim.lsp.buf.rename, { buffer = buffer, desc = "Rename" })
+        map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = buffer, desc = "Rename" })
       end)
 
       Util.setup()
