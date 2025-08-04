@@ -53,6 +53,10 @@ return {
         },
       }
 
+      vim.api.nvim_set_hl(0, "GitSignsAddNr",    { fg = "#ffffff", bg = "#009900" })  -- blanco sobre verde
+      vim.api.nvim_set_hl(0, "GitSignsChangeNr", { fg = "#ffffff", bg = "#ff8800" })  -- blanco sobre naranja
+      vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { fg = "#ffffff", bg = "#990000" })  -- blanco sobre rojo
+
       local gs = package.loaded.gitsigns
 
       local function map(mode, l, r, desc)
