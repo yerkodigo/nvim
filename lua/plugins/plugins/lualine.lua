@@ -72,9 +72,9 @@ return {
         lualine_z = { "location" },
       },
       -- Opcional: usar el tabline para ver las pestañas arriba
-      tabline = {
-        lualine_a = { "tabs" },
-      },
+      -- tabline = {
+      --   lualine_a = { "tabs" },
+      -- },
     })
   end,
 }
