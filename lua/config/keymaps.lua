@@ -25,6 +25,8 @@ keymap.set("n", "<A-h>", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  g
 keymap.set("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
 keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
 
+keymap.set("n", "<leader> q", ":wqa<CR>", { desc = "Guardar todo y cerrar" })
+
 -- Cerrar buffer o ventana
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Cerrar ventana/tab" })
 
