@@ -17,6 +17,7 @@ M.setup = function()
     callback = function()
       require("config.keymaps")
       require("config.autocmds")
+      require("config.commit-modal")
     end,
   })
 end
