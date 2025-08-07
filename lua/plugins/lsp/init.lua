@@ -80,7 +80,32 @@ return {
             },
           },
         },
-        -- you can do any additional lsp server setup here
+        vue_ls = {
+          filetypes = { "vue", "typescript", "javascript", "javascriptreact", "typescriptreact" },
+          root_dir = function(fname)
+            return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.os_homedir()
+          end,
+          init_options = {
+            config = {
+              vetur = {
+                useWorkspaceDependencies = true,
+                useWorkspaceDependenciesForGlobalModules = true,
+              },
+            },
+          },
+        },
+        ts_ls = {
+          filetypes = { "typescript", "typescriptreact", "typescript.tsx", "vue" },
+          root_dir = function(fname)
+            return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.os_homedir()
+          end,
+          init_options = {
+            preferences = {
+              importModuleSpecifierPreference = "non-relative",
+              includePackageJsonAutoImports = "auto",
+            },
+          },
+        },
         setup = {},
       }
     end,

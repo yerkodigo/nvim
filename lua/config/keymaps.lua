@@ -38,3 +38,6 @@ keymap.set("n", "<leader>f", ":set filetype<CR>gg=G", { desc = "Reconfigurar fil
 
 -- Identar alrededor del cursor
 keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor" })
+
+-- Restaura las dimensiones de las pestañas
+keymap.set("n", "<leader>=", "<C-w>=", { desc = "Restaura las dimensiones de las pestañas" })
