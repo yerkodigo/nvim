@@ -41,3 +41,8 @@ keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor"
 
 -- Restaura las dimensiones de las pestañas
 keymap.set("n", "<leader>=", "<C-w>=", { desc = "Restaura las dimensiones de las pestañas" })
+
+keymap.set("n", "<C-M-h>", ":vertical resize -6<CR>")
+keymap.set("n", "<C-M-l>", ":vertical resize +6<CR>")
+keymap.set("n", "<C-M-j>", ":resize -4<CR>")
+keymap.set("n", "<C-M-k>", ":resize +4<CR>")

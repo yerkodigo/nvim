@@ -16,6 +16,8 @@ return {
       todo_comments.jump_prev()
     end, { desc = "Previous todo comment" })
 
+    keymap.set("n", "<leader>td", "<cmd>TodoQuickFix<cr>", { desc = "List all todo comments" })
+
     todo_comments.setup()
   end,
 }

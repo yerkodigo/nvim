@@ -3,16 +3,23 @@ return {
     "github/copilot.vim",
     event = "InsertEnter",
     config = function()
+      -- Deshabilitar mapeo de Tab por defecto para evitar conflictos
       vim.g.copilot_no_tab_map = true
 
-      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")',
-        { expr = true, silent = true, desc = "Aceptar sugerencia Copilot con Ctrl+j" })
-      -- vim.api.nvim_set_keymap("i", "<Tab>", 'copilot#Accept("<CR>")', { expr = true, silent = true, desc = "Aceptar sugerencia Copilot con Tab" })
+      -- Mapear Shift+Tab para aceptar sugerencias
+      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', {
+        expr = true,
+        replace_keycodes = false,
+        desc = "Accept Copilot suggestion"
+      })
 
-      vim.api.nvim_set_keymap("i", "<A-}>", 'copilot#Next()',
-        { expr = true, silent = true, desc = "Siguiente sugerencia Copilot con Ctrl+n" })
-      vim.api.nvim_set_keymap("i", "<A-{>", 'copilot#Previous()',
-        { expr = true, silent = true, desc = "Sugerencia previa Copilot con Ctrl+p" })
+      -- Navegación de sugerencias
+      vim.keymap.set('i', '<C-j>', '<Plug>(copilot-next)', { desc = "Next Copilot suggestion" })
+      vim.keymap.set('i', '<C-k>', '<Plug>(copilot-previous)', { desc = "Previous Copilot suggestion" })
+      vim.keymap.set('i', '<C-l>', '<Plug>(copilot-suggest)', { desc = "Trigger Copilot suggestion" })
+
+      vim.api.nvim_set_keymap("i", "<C-h>", 'copilot#Accept("<CR>")',
+        { expr = true, silent = true, desc = "Aceptar sugerencia Copilot con Ctrl+j" })
     end,
   },
 }

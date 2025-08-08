@@ -10,7 +10,20 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
+
+-- ********** COPILOT CONFIGURATION **********
+-- Mejorar completeopt para autocompletado
+vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
+
+-- Configurar Which-key para mostrar atajos de Copilot Chat
+if pcall(require, "which-key") then
+  require("which-key").register({
+    ["<leader>cc"] = { name = "Copilot Chat" },
+  })
+end
+-- ********** COPILOT CONFIGURATION FIN **********
 
 -- Configuración inicial
 require("config")
