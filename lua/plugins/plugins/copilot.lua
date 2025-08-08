@@ -20,6 +20,8 @@ return {
 
       vim.api.nvim_set_keymap("i", "<C-h>", 'copilot#Accept("<CR>")',
         { expr = true, silent = true, desc = "Aceptar sugerencia Copilot con Ctrl+j" })
+
+      vim.notify("Copilot cargado correctamente", vim.log.levels.INFO)
     end,
   },
 }
