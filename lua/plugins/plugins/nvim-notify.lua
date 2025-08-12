@@ -16,7 +16,7 @@ return {
         DEBUG = "",
         TRACE = "✎",
       },
-      background_colour = "#D3D3D3",
+      -- background_colour = "#D3D3D3",
       top_down = false,
       on_open = function(win)
         local cfg  = vim.api.nvim_win_get_config(win)

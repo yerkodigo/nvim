@@ -2,7 +2,7 @@ return {
   {
     "brenoprata10/nvim-highlight-colors",
     dependencies = { "nvim-lua/plenary.nvim" },
-    ft = { "css", "scss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "lua" },
+    ft = { "css", "scss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "lua", "vim" },
     config = function()
       require("nvim-highlight-colors").setup({
         render = "background",
