@@ -6,22 +6,24 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      background = "dark",
+      background = "light",
       transparent = false,
     },
     config = function(_, opts)
-      vim.opt.termguicolors = true
-      vim.opt.background = opts.background or "dark"
+      local vi = vim
 
-      vim.cmd('colorscheme ykamono')
+      vi.opt.termguicolors = true
+      vi.opt.background = opts.background or "light"
+
+      vi.cmd('colorscheme ykamono')
 
       local function set_ykamono(style)
-        vim.opt.background = style
-        vim.cmd('colorscheme ykamono')
+        vi.opt.background = style
+        vi.cmd('colorscheme ykamono')
       end
 
-      vim.keymap.set('n', '<leader>dt', function() set_ykamono('dark') end, { desc = 'YkaMono Dark' })
-      vim.keymap.set('n', '<leader>lt', function() set_ykamono('light') end, { desc = 'YkaMono Light' })
+      vi.keymap.set('n', '<leader>dt', function() set_ykamono('dark') end, { desc = 'YkaMono Dark' })
+      vi.keymap.set('n', '<leader>lt', function() set_ykamono('light') end, { desc = 'YkaMono Light' })
     end,
   },
 }
