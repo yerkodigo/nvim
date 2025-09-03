@@ -69,7 +69,23 @@ return {
         end,
       })
 
-      vim.keymap.set("n", "<leader>l", function()
+      -- Commands to disable/enable linting
+      vim.api.nvim_create_user_command("LintDisable", function()
+        lint_enabled = false
+        vim.notify("nvim-lint disabled", vim.log.levels.INFO)
+      end, { desc = "Disable nvim-lint" })
+
+      vim.api.nvim_create_user_command("LintEnable", function()
+        lint_enabled = true
+        vim.notify("nvim-lint enabled", vim.log.levels.INFO)
+        -- trigger lint immediately for current buffer if configured
+        local ft = vim.bo.filetype
+        if lint.linters_by_ft[ft] then
+          lint.try_lint()
+        end
+      end, { desc = "Enable nvim-lint" })
+
+      vim.keymap.set("n", "<leader>ll", function()
         local ft = vim.bo.filetype
         if lint.linters_by_ft[ft] then
           lint.try_lint()
