@@ -10,7 +10,7 @@ return {
 
     opts = {
       -- Modelo por defecto (similar a VSCode)
-      model = 'o4-mini',
+      model = 'gpt-4.1',
 
       -- Configuración de temperatura para respuestas más consistentes
       temperature = 0.1,
@@ -50,17 +50,17 @@ return {
       -- Prompts personalizados para flujo de trabajo
       prompts = {
         Explain = {
-          prompt = '/COPILOT_EXPLAIN Explica el código seleccionado de manera clara y detallada.',
+          prompt = '/COPILOT_EXPLAIN Explica el código seleccionado de manera clara y detallada en español',
           mapping = '<leader>cce',
           description = 'Explicar código seleccionado',
         },
         Review = {
-          prompt = '/COPILOT_REVIEW Revisa el código y sugiere mejoras.',
+          prompt = '/COPILOT_REVIEW Revisa el código y sugiere mejoras en español.',
           mapping = '<leader>ccr',
           description = 'Revisar código',
         },
         Fix = {
-          prompt = '/COPILOT_GENERATE Identifica y corrige cualquier problema en el código.',
+          prompt = '/COPILOT_GENERATE Identifica y corrige cualquier problema en el código. Responde en español',
           mapping = '<leader>ccf',
           description = 'Corregir código',
         },
