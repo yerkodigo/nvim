@@ -55,7 +55,8 @@ return {
           description = 'Explicar código seleccionado',
         },
         Review = {
-          prompt = '/COPILOT_REVIEW Revisa el código y sugiere mejoras en español.',
+          prompt =
+          '/COPILOT_REVIEW Revisa el código y sugiere mejoras priorizando el rendimiento y legibilidad en español.',
           mapping = '<leader>ccr',
           description = 'Revisar código',
         },
@@ -65,7 +66,7 @@ return {
           description = 'Corregir código',
         },
         Optimize = {
-          prompt = '/COPILOT_GENERATE Optimiza el código para mejor rendimiento y legibilidad.',
+          prompt = '/COPILOT_GENERATE Optimiza el código para mejor rendimiento y legibilidad. Explicame en español.',
           mapping = '<leader>cco',
           description = 'Optimizar código',
         },

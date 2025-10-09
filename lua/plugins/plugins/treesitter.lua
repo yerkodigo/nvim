@@ -6,43 +6,14 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
-
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
+    -- configure nvim-treesitter
+    require("nvim-treesitter.configs").setup({
+      highlight = { enable = true },
       indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      -- ensure these language parsers are installed
       ensure_installed = {
-        "json",
-        "javascript",
-        "typescript",
-        "tsx",
-        "yaml",
-        "html",
-        "css",
-        "prisma",
-        "markdown",
-        "markdown_inline",
-        "svelte",
-        "graphql",
-        "bash",
-        "lua",
-        "vim",
-        "dockerfile",
-        "gitignore",
-        "query",
-        "vimdoc",
-        "c",
-        "vue",
+        "json", "javascript", "typescript", "tsx", "yaml", "html", "css",
+        "prisma", "markdown", "markdown_inline", "svelte", "graphql", "bash",
+        "lua", "vim", "dockerfile", "gitignore", "query", "vimdoc", "c", "vue",
       },
       incremental_selection = {
         enable = true,
@@ -55,16 +26,12 @@ return {
       },
     })
 
+    -- configure nvim-ts-autotag separately
     require('nvim-ts-autotag').setup({
-      opts = {
-        -- Defaults
-        enable_close = true,          -- Auto close tags
-        enable_rename = true,         -- Auto rename pairs of tags
-        enable_close_on_slash = false -- Auto close on trailing </
-      },
-      -- Also override individual filetype configs, these take priority.
-      -- Empty by default, useful if one of the "opts" global settings
-      -- doesn't work well in a specific filetype
+      enable = true,
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = false,
       per_filetype = {
         ["html"] = {
           enable_close = true
