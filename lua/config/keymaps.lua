@@ -46,3 +46,10 @@ keymap.set("n", "<C-M-h>", ":vertical resize -6<CR>")
 keymap.set("n", "<C-M-l>", ":vertical resize +6<CR>")
 keymap.set("n", "<C-M-j>", ":resize -4<CR>")
 keymap.set("n", "<C-M-k>", ":resize +4<CR>")
+
+-- Copiar ruta relativa del archivo actual al portapapeles
+keymap.set('n', '<leader> c', function()
+  local filepath = vim.fn.expand('%:.')
+  vim.fn.setreg('+', filepath)
+  vim.notify('Ruta de archivo copiada al portapapeles: ' .. filepath, vim.log.levels.INFO)
+end, { desc = 'Copiar ruta del archivo al portapapeles' })
