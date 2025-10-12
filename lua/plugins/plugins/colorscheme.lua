@@ -1,8 +1,15 @@
 return {
   {
+    -- DEV
+    -- "ykacolors-local",
+    -- dir = vim.fn.expand("~/.config/ykacolors.vim"), -- Use vim.fn.expand
+    -- dev = true,
+
+    -- REPO
     "yerkodigo/yka.mono",
     name = "yka-mono",
     branch = 'dev',
+
     lazy = false,
     priority = 1000,
     opts = {
