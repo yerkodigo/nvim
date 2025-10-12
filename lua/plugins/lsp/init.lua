@@ -6,6 +6,7 @@ return {
     dependencies = {
       "mason.nvim",
       { "mason-org/mason-lspconfig.nvim", config = function() end },
+      "b0o/schemastore.nvim",
     },
     opts = function()
       return {
@@ -79,30 +80,60 @@ return {
               },
             },
           },
-        },
-        vue_ls = {
-          filetypes = { "vue", "typescript", "javascript", "javascriptreact", "typescriptreact" },
-          root_dir = function(fname)
-            return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.os_homedir()
-          end,
-          init_options = {
-            config = {
-              vetur = {
-                useWorkspaceDependencies = true,
-                useWorkspaceDependenciesForGlobalModules = true,
+          -- Volar para Vue.js 3 (recomendado sobre vue_ls/vetur)
+          volar = {
+            filetypes = { "vue", "typescript", "javascript", "javascriptreact", "typescriptreact", "json" },
+            init_options = {
+              vue = {
+                hybridMode = false,
+              },
+              typescript = {
+                tsdk = "",
               },
             },
           },
-        },
-        ts_ls = {
-          filetypes = { "typescript", "typescriptreact", "typescript.tsx", "vue" },
-          root_dir = function(fname)
-            return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.os_homedir()
-          end,
-          init_options = {
-            preferences = {
-              importModuleSpecifierPreference = "non-relative",
-              includePackageJsonAutoImports = "auto",
+          -- TypeScript/JavaScript Language Server
+          ts_ls = {
+            init_options = {
+              plugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = "",
+                  languages = { "vue" },
+                },
+              },
+              preferences = {
+                importModuleSpecifierPreference = "non-relative",
+                includePackageJsonAutoImports = "auto",
+              },
+            },
+            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          },
+          -- HTML Language Server
+          html = {
+            filetypes = { "html", "vue" },
+          },
+          -- CSS Language Server
+          cssls = {
+            filetypes = { "css", "scss", "less", "vue" },
+          },
+          -- ESLint Language Server
+          eslint = {
+            settings = {
+              workingDirectories = { mode = "auto" },
+            },
+            on_attach = function(client, bufnr)
+              -- Habilitar formato con ESLint si está disponible
+              client.server_capabilities.documentFormattingProvider = true
+            end,
+          },
+          -- JSON Language Server
+          jsonls = {
+            settings = {
+              json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+              },
             },
           },
         },
@@ -136,10 +167,12 @@ return {
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local servers = opts.servers
+      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
         opts.capabilities or {}
       )
 
