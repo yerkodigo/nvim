@@ -82,32 +82,23 @@ return {
           },
           -- Volar para Vue.js 3 (recomendado sobre vue_ls/vetur)
           volar = {
-            filetypes = { "vue", "typescript", "javascript", "javascriptreact", "typescriptreact", "json" },
+            filetypes = { "vue" },
             init_options = {
               vue = {
                 hybridMode = false,
-              },
-              typescript = {
-                tsdk = "",
               },
             },
           },
           -- TypeScript/JavaScript Language Server
           ts_ls = {
+            -- Excluir archivos .vue de ts_ls para evitar conflictos con Volar
+            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
             init_options = {
-              plugins = {
-                {
-                  name = "@vue/typescript-plugin",
-                  location = "",
-                  languages = { "vue" },
-                },
-              },
               preferences = {
                 importModuleSpecifierPreference = "non-relative",
                 includePackageJsonAutoImports = "auto",
               },
             },
-            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           },
           -- HTML Language Server
           html = {
