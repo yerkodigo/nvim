@@ -18,16 +18,18 @@ return {
     },
     config = function(_, opts)
       local vi = vim
+      local colorscheme_dark = "tron"
+      local colorscheme_light = "flynn"
       local HORA_FRONTERA = 19
 
       local function get_colorscheme_by_time()
         local hora_actual = tonumber(os.date("%H"))
 
         if hora_actual >= HORA_FRONTERA then
-          return "tron", "dark"
+          return colorscheme_dark, "dark"
         else
           -- Modo diurno (< 19:00)
-          return "flynn", "light"
+          return colorscheme_light, "light"
         end
       end
 
@@ -43,9 +45,9 @@ return {
         vi.cmd('colorscheme ' .. scheme)
       end
 
-      vi.keymap.set('n', '<leader>dt', function() set_colorscheme('tron', 'dark') end,
+      vi.keymap.set('n', '<leader>dt', function() set_colorscheme(colorscheme_dark, 'dark') end,
         { desc = 'Tron Dark' })
-      vi.keymap.set('n', '<leader>lt', function() set_colorscheme('flynn', 'light') end,
+      vi.keymap.set('n', '<leader>lt', function() set_colorscheme(colorscheme_light, 'light') end,
         { desc = 'Flynn Light' })
     end,
   }
