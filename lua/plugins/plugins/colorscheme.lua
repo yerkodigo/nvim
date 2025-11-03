@@ -1,6 +1,6 @@
 return {
   {
-    -- DEV
+    -- DEV - usar para desarrollo local
     -- "yka-tron-local",
     -- dir = vim.fn.expand("~/.config/yka.tron"),
     -- dev = true,
@@ -22,6 +22,8 @@ return {
       local colorscheme_light = "flynn"
       local HORA_FRONTERA = 19
 
+      local usarFrontera = false
+
       local function get_colorscheme_by_time()
         local hora_actual = tonumber(os.date("%H"))
 
@@ -33,7 +35,14 @@ return {
         end
       end
 
-      local colorscheme_name, background = get_colorscheme_by_time()
+      local colorscheme_name, background
+
+      if usarFrontera then
+        colorscheme_name, background = get_colorscheme_by_time()
+      else
+        colorscheme_name = colorscheme_dark
+        background = "dark"
+      end
 
       vi.opt.termguicolors = true
       vi.opt.background = background
