@@ -1,5 +1,149 @@
+-- ============================================================================
+-- LSP CONFIGURATION - Modularizado para mejor mantenibilidad
+-- ============================================================================
+
+-- ============================================================================
+-- KEYMAPS - Atajos de teclado para LSP
+-- ============================================================================
+local function setup_lsp_keymaps(client, buffer)
+  local map = vim.keymap.set
+
+  -- Navegación
+  map("n", "gd", vim.lsp.buf.definition, { buffer = buffer, desc = "Goto Definition" })
+  map("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "References" })
+  map("n", "gI", vim.lsp.buf.implementation, { buffer = buffer, desc = "Goto Implementation" })
+  map("n", "gy", vim.lsp.buf.type_definition, { buffer = buffer, desc = "Goto T[y]pe Definition" })
+  map("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, desc = "Goto Declaration" })
+
+  -- Información y ayuda
+  map("n", "K", vim.lsp.buf.hover, { buffer = buffer, desc = "Hover" })
+  map("n", "gK", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
+  map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
+
+  -- Acciones de código
+  map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "Code Action" })
+  map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { buffer = buffer, desc = "Run Codelens" })
+  map("n", "<leader>cC", vim.lsp.codelens.refresh, { buffer = buffer, desc = "Refresh & Display Codelens" })
+  map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = buffer, desc = "Rename" })
+end
+
+-- ============================================================================
+-- DIAGNOSTICS - Configuración de diagnósticos
+-- ============================================================================
+local diagnostics_config = {
+  underline = true,
+  update_in_insert = false,
+  virtual_text = {
+    spacing = 4,
+    source = "if_many",
+    prefix = "●",
+  },
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+  },
+}
+
+-- ============================================================================
+-- SERVERS - Configuración de servidores LSP
+-- ============================================================================
+local servers = {
+  -- Lua Language Server
+  lua_ls = {
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+        },
+        codeLens = {
+          enable = true,
+        },
+        completion = {
+          callSnippet = "Replace",
+        },
+        doc = {
+          privateName = { "^_" },
+        },
+        hint = {
+          enable = true,
+          setType = false,
+          paramType = true,
+          paramName = "Disable",
+          semicolon = "Disable",
+          arrayIndex = "Disable",
+        },
+      },
+    },
+  },
+
+  -- Volar para Vue.js 3 (recomendado sobre vue_ls/vetur)
+  volar = {
+    filetypes = { "vue" },
+    init_options = {
+      vue = {
+        hybridMode = false,
+      },
+    },
+  },
+
+  -- TypeScript/JavaScript Language Server
+  ts_ls = {
+    -- Excluir archivos .vue de ts_ls para evitar conflictos con Volar
+    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+    init_options = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        includePackageJsonAutoImports = "auto",
+      },
+    },
+  },
+
+  -- HTML Language Server
+  html = {
+    filetypes = { "html", "vue" },
+  },
+
+  -- CSS Language Server
+  cssls = {
+    filetypes = { "css", "scss", "less", "vue" },
+  },
+
+  -- ESLint Language Server
+  eslint = {
+    settings = {
+      workingDirectories = { mode = "auto" },
+    },
+    on_attach = function(client, bufnr)
+      -- Habilitar formato con ESLint si está disponible
+      client.server_capabilities.documentFormattingProvider = true
+    end,
+  },
+
+  -- JSON Language Server
+  jsonls = {
+    on_new_config = function(new_config)
+      local ok, schemastore = pcall(require, "schemastore")
+      if ok then
+        new_config.settings.json.schemas = schemastore.json.schemas()
+      end
+    end,
+    settings = {
+      json = {
+        validate = { enable = true },
+      },
+    },
+  },
+}
+
+-- ============================================================================
+-- PLUGIN SPEC
+-- ============================================================================
 return {
-  -- lspconfig
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -10,35 +154,18 @@ return {
     },
     opts = function()
       return {
-        -- options for vim.diagnostic.config()
-        diagnostics = {
-          underline = true,
-          update_in_insert = false,
-          virtual_text = {
-            spacing = 4,
-            source = "if_many",
-            prefix = "●",
-          },
-          severity_sort = true,
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = " ",
-              [vim.diagnostic.severity.WARN] = " ",
-              [vim.diagnostic.severity.HINT] = " ",
-              [vim.diagnostic.severity.INFO] = " ",
-            },
-          },
-        },
-        -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+        -- Configuración de diagnósticos
+        diagnostics = diagnostics_config,
+        -- Inlay hints
         inlay_hints = {
           enabled = true,
           exclude = { "vue" },
         },
-        -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
+        -- Code lenses
         codelens = {
           enabled = false,
         },
-        -- add any global capabilities here
+        -- Capacidades globales
         capabilities = {
           workspace = {
             fileOperations = {
@@ -47,117 +174,28 @@ return {
             },
           },
         },
-        -- options for vim.lsp.buf.format
+        -- Opciones de formato
         format = {
           formatting_options = nil,
           timeout_ms = nil,
         },
-        -- LSP Server Settings
-        servers = {
-          lua_ls = {
-            settings = {
-              Lua = {
-                workspace = {
-                  checkThirdParty = false,
-                },
-                codeLens = {
-                  enable = true,
-                },
-                completion = {
-                  callSnippet = "Replace",
-                },
-                doc = {
-                  privateName = { "^_" },
-                },
-                hint = {
-                  enable = true,
-                  setType = false,
-                  paramType = true,
-                  paramName = "Disable",
-                  semicolon = "Disable",
-                  arrayIndex = "Disable",
-                },
-              },
-            },
-          },
-          -- Volar para Vue.js 3 (recomendado sobre vue_ls/vetur)
-          volar = {
-            filetypes = { "vue" },
-            init_options = {
-              vue = {
-                hybridMode = false,
-              },
-            },
-          },
-          -- TypeScript/JavaScript Language Server
-          ts_ls = {
-            -- Excluir archivos .vue de ts_ls para evitar conflictos con Volar
-            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-            init_options = {
-              preferences = {
-                importModuleSpecifierPreference = "non-relative",
-                includePackageJsonAutoImports = "auto",
-              },
-            },
-          },
-          -- HTML Language Server
-          html = {
-            filetypes = { "html", "vue" },
-          },
-          -- CSS Language Server
-          cssls = {
-            filetypes = { "css", "scss", "less", "vue" },
-          },
-          -- ESLint Language Server
-          eslint = {
-            settings = {
-              workingDirectories = { mode = "auto" },
-            },
-            on_attach = function(client, bufnr)
-              -- Habilitar formato con ESLint si está disponible
-              client.server_capabilities.documentFormattingProvider = true
-            end,
-          },
-          -- JSON Language Server
-          jsonls = {
-            settings = {
-              json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true },
-              },
-            },
-          },
-        },
+        -- Configuración de servidores
+        servers = servers,
         setup = {},
       }
     end,
     config = function(_, opts)
       local Util = require("util.lsp")
 
-      -- setup keymaps
-      Util.on_attach(function(client, buffer)
-        local map = vim.keymap.set
-
-        map("n", "gd", vim.lsp.buf.definition, { buffer = buffer, desc = "Goto Definition" })
-        map("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "References" })
-        map("n", "gI", vim.lsp.buf.implementation, { buffer = buffer, desc = "Goto Implementation" })
-        map("n", "gy", vim.lsp.buf.type_definition, { buffer = buffer, desc = "Goto T[y]pe Definition" })
-        map("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, desc = "Goto Declaration" })
-        map("n", "K", vim.lsp.buf.hover, { buffer = buffer, desc = "Hover" })
-        map("n", "gK", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
-        map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
-        map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "Code Action" })
-        map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { buffer = buffer, desc = "Run Codelens" })
-        map("n", "<leader>cC", vim.lsp.codelens.refresh, { buffer = buffer, desc = "Refresh & Display Codelens" })
-        map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = buffer, desc = "Rename" })
-      end)
+      -- Configurar keymaps
+      Util.on_attach(setup_lsp_keymaps)
 
       Util.setup()
 
-      -- Configure diagnostics
+      -- Configurar diagnósticos
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-      local servers = opts.servers
+      local lspconfig_servers = opts.servers
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
         "force",
@@ -170,7 +208,7 @@ return {
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
+        }, lspconfig_servers[server] or {})
         if server_opts.enabled == false then
           return
         end
@@ -187,11 +225,10 @@ return {
         require("lspconfig")[server].setup(server_opts)
       end
 
-      -- get all the servers that are available through mason-lspconfig
+      -- Obtener servidores disponibles a través de mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       local all_mslp_servers = {}
       if have_mason then
-        -- Manejo seguro del módulo mappings
         local ok, mappings = pcall(require, "mason-lspconfig.mappings.server")
         if ok and mappings.lspconfig_to_package then
           all_mslp_servers = vim.tbl_keys(mappings.lspconfig_to_package)
@@ -199,11 +236,10 @@ return {
       end
 
       local ensure_installed = {}
-      for server, server_opts in pairs(servers) do
+      for server, server_opts in pairs(lspconfig_servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
-            -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
             if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
               setup(server)
             else

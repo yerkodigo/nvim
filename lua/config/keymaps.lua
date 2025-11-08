@@ -1,55 +1,24 @@
--- configuracion de keymaps personalizados
--- Las teclas leader se configuran antes de cargar la configuración de lazy.
+-- ============================================================================
+-- KEYMAPS - Punto de entrada principal
+-- ============================================================================
+-- Este archivo importa todos los keymaps organizados por categoría.
+-- La tecla leader se configura en lua/config/lazy.lua antes de cargar plugins.
+--
+-- Para ver la lista completa de keymaps, consulta:
+-- lua/config/keymaps/README.md
+-- ============================================================================
 
-local keymap = vim.keymap
+-- Cargar keymaps por categoría
+require("config.keymaps.general")     -- Atajos generales del editor
+require("config.keymaps.windows")     -- Gestión de ventanas
+require("config.keymaps.tabs")        -- Gestión de pestañas
+require("config.keymaps.files")       -- Operaciones con archivos
+require("config.keymaps.navigation")  -- Navegación y explorador
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exis insert mode with jk" })
-
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-
-keymap.set("n", "<leader>nt", ":Neotree reveal=true toggle<CR>", { desc = "Toggle Neo-tree en ubicación actual" })
-
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })     -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })   -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })      -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
-
-keymap.set("n", "<C-n>", "<cmd>tabnew<CR>", { desc = "Open new tab" })            -- open new tab
--- keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<A-l>", "<cmd>tabn<CR>", { desc = "Go to next tab" })            --  go to next tab
-keymap.set("n", "<A-h>", "<cmd>tabp<CR>", { desc = "Go to previous tab" })        --  go to previous tab
--- keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
-
--- Guardar archivo
-keymap.set("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
-keymap.set("n", "<C-s>", ":w<CR>", { desc = "Guardar archivo" })
-
-keymap.set("n", "<leader> q", ":wqa<CR>", { desc = "Guardar todo y cerrar" })
-
--- Cerrar buffer o ventana
-keymap.set("n", "<leader>q", ":q<CR>", { desc = "Cerrar ventana/tab" })
-
--- Copiar al portapapeles del sistema desde modo visual
-keymap.set("v", "<C-c>", '"+y', { desc = "Copiar al portapapeles" })
-
--- Reconfigurar el filetype y autoformatear todo el archivo
-keymap.set("n", "<leader>f", ":set filetype<CR>gg=G", { desc = "Reconfigurar filetype y formatear archivo" })
-
--- Identar alrededor del cursor
-keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor" })
-
--- Restaura las dimensiones de las pestañas
-keymap.set("n", "<leader>=", "<C-w>=", { desc = "Restaura las dimensiones de las pestañas" })
-
-keymap.set("n", "<C-M-h>", ":vertical resize -6<CR>")
-keymap.set("n", "<C-M-l>", ":vertical resize +6<CR>")
-keymap.set("n", "<C-M-j>", ":resize -4<CR>")
-keymap.set("n", "<C-M-k>", ":resize +4<CR>")
-
--- Copiar ruta relativa del archivo actual al portapapeles
-keymap.set('n', '<leader> c', function()
-  local filepath = vim.fn.expand('%:.')
-  vim.fn.setreg('+', filepath)
-  vim.notify('Ruta de archivo copiada al portapapeles: ' .. filepath, vim.log.levels.INFO)
-end, { desc = 'Copiar ruta del archivo al portapapeles' })
+-- Nota: Algunos keymaps adicionales están definidos en los archivos de plugins:
+-- - LSP keymaps: lua/plugins/lsp/init.lua
+-- - Telescope: lua/plugins/plugins/navigation/telescope.lua
+-- - Auto-session: lua/plugins/plugins/tools/auto-session.lua
+-- - Copilot: lua/plugins/plugins/tools/copilot.lua
+-- - Colorscheme: lua/plugins/plugins/ui/colorscheme.lua
+-- - Neotree: lua/plugins/plugins/navigation/neotree.lua

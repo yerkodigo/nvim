@@ -26,8 +26,11 @@ return {
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- Snippets personalizados
-    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/yerkodigo/snippets/" })
+    -- Snippets personalizados (si existen)
+    local snippets_path = vim.fn.stdpath("config") .. "/lua/snippets"
+    if vim.fn.isdirectory(snippets_path) == 1 then
+      require("luasnip.loaders.from_lua").load({ paths = snippets_path })
+    end
 
     cmp.setup({
       completion = {
