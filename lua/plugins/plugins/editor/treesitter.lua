@@ -4,6 +4,7 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
     -- configure nvim-treesitter

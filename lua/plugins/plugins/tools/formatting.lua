@@ -4,6 +4,10 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local conform = require("conform")
+
+      -- Variable para controlar el formateo automático
+      vim.g.autoformat_enabled = false
+
       conform.setup({
         formatters_by_ft = {
           javascript = { "prettier" },
@@ -25,13 +29,20 @@ return {
           lua = { "stylua" },
           python = { "isort", "black" },
         },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 1000,
-        },
+        format_on_save = function(bufnr)
+          -- Solo formatear si está habilitado
+          if not vim.g.autoformat_enabled then
+            return
+          end
+          return {
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 1000,
+          }
+        end,
       })
 
+      -- Formateo manual
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
         conform.format({
           lsp_fallback = true,
@@ -39,6 +50,24 @@ return {
           timeout_ms = 1000,
         })
       end, { desc = "Format file or range (in visual mode)" })
+
+      -- Toggle formateo automático
+      vim.keymap.set("n", "<leader>tf", function()
+        vim.g.autoformat_enabled = not vim.g.autoformat_enabled
+        local status = vim.g.autoformat_enabled and "enabled" or "disabled"
+        vim.notify("Autoformat on save " .. status, vim.log.levels.INFO)
+      end, { desc = "Toggle autoformat on save" })
+
+      -- Comandos para habilitar/deshabilitar
+      vim.api.nvim_create_user_command("FormatDisable", function()
+        vim.g.autoformat_enabled = false
+        vim.notify("Autoformat on save disabled", vim.log.levels.INFO)
+      end, { desc = "Disable autoformat on save" })
+
+      vim.api.nvim_create_user_command("FormatEnable", function()
+        vim.g.autoformat_enabled = true
+        vim.notify("Autoformat on save enabled", vim.log.levels.INFO)
+      end, { desc = "Enable autoformat on save" })
     end,
   },
   {

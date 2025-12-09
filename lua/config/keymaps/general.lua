@@ -20,7 +20,7 @@ keymap.set("n", "<leader>F", "=ap", { desc = "Indentación alrededor del cursor"
 
 -- Copiar ruta relativa del archivo actual al portapapeles
 keymap.set('n', '<leader>yp', function()
-  local filepath = vim.fn.expand('%:.')
+  local filepath = '@' .. vim.fn.expand('%:.')
   vim.fn.setreg('+', filepath)
   vim.notify('Ruta de archivo copiada al portapapeles: ' .. filepath, vim.log.levels.INFO)
 end, { desc = 'Copiar ruta del archivo al portapapeles' })
