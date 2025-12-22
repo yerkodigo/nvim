@@ -2,6 +2,29 @@ return {
   "rmagatti/auto-session",
   config = function()
     local auto_session = require("auto-session")
+    local platform = require("util.platform")
+
+    -- Directorios a suprimir según plataforma
+    local suppress_dirs = {}
+
+    if platform.is_windows then
+      local userprofile = os.getenv("USERPROFILE")
+      suppress_dirs = {
+        userprofile,
+        userprofile .. "\\Downloads",
+        userprofile .. "\\Documents",
+        userprofile .. "\\Desktop",
+        userprofile .. "\\Dev",
+      }
+    else
+      suppress_dirs = {
+        "~/",
+        "~/Dev/",
+        "~/Downloads",
+        "~/Documents",
+        "~/Desktop/",
+      }
+    end
 
     auto_session.setup({
       -- Carpeta raíz donde se guardan *todas* las sesiones, cada sesión
@@ -16,13 +39,7 @@ return {
       auto_restore_enabled     = true,
 
       -- Dónde no queremos crear sesiones
-      auto_session_suppress_dirs = {
-        "~/",
-        "~/Dev/",
-        "~/Downloads",
-        "~/Documents",
-        "~/Desktop/",
-      },
+      auto_session_suppress_dirs = suppress_dirs,
 
       -- Sesiones por ramas en git
       auto_session_use_git_branch = true,

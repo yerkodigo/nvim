@@ -1,8 +1,8 @@
 return {
   {
-    -- DEV - usar para desarrollo local
+    -- DEV - usar para desarrollo local (ruta multiplataforma)
     -- "yka-tron-local",
-    -- dir = vim.fn.expand("~/.config/yka.tron"),
+    -- dir = vim.fn.stdpath("config") .. "/../yka.tron",
     -- dev = true,
 
     -- REPO

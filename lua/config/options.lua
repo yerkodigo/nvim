@@ -26,8 +26,13 @@ opt.signcolumn = "yes"
 -- backspace
 opt.backspace = "indent,eol,start"
 
--- clipboard
-opt.clipboard:append("unnamedplus")
+-- clipboard (configuración multiplataforma)
+local platform = require("util.platform")
+if platform.is_windows then
+  opt.clipboard = "unnamedplus"  -- Windows usa win32yank automáticamente
+else
+  opt.clipboard:append("unnamedplus")
+end
 
 -- split windows
 opt.splitright = true

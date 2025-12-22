@@ -10,7 +10,18 @@ return {
       -- follow latest release.
       version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
       -- install jsregexp (optional!).
-      build = "make install_jsregexp",
+      build = function()
+        local platform = require("util.platform")
+        if platform.is_windows then
+          if platform.executable("nmake") then
+            return "nmake install_jsregexp"
+          end
+          vim.notify("LuaSnip: jsregexp no compilado (opcional)", vim.log.levels.WARN)
+          return nil
+        else
+          return "make install_jsregexp"
+        end
+      end,
     },
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
@@ -26,8 +37,11 @@ return {
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- Snippets personalizados
-    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/yerkodigo/snippets/" })
+    -- Snippets personalizados con ruta multiplataforma
+    local custom_snippets_path = vim.fn.stdpath("config") .. "/lua/yerkodigo/snippets/"
+    if vim.fn.isdirectory(custom_snippets_path) == 1 then
+      require("luasnip.loaders.from_lua").load({ paths = custom_snippets_path })
+    end
 
     cmp.setup({
       completion = {

@@ -5,7 +5,19 @@ return {
       { "nvim-lua/plenary.nvim",        branch = "master" },
       { "nvim-telescope/telescope.nvim" }, -- Para mejor UI selection
     },
-    build = "make tiktoken",               -- Construye tiktoken para conteo preciso de tokens
+    build = function()
+      local platform = require("util.platform")
+
+      if platform.is_windows then
+        -- tiktoken es Python, CopilotChat lo maneja automáticamente
+        if not (platform.executable("python") or platform.executable("python3")) then
+          vim.notify("CopilotChat: Python no encontrado", vim.log.levels.WARN)
+        end
+        return nil
+      else
+        return "make tiktoken"
+      end
+    end,
     event = "VeryLazy",
 
     opts = {

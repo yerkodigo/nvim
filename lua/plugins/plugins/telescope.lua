@@ -1,10 +1,20 @@
--- sudo apt install ripgrep fd-find
+local platform = require("util.platform")
+
 return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        -- Build condicional según plataforma
+        build = platform.is_windows
+          and "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+          or "make",
+        cond = function()
+          return platform.executable("make") or platform.executable("cmake")
+        end,
+      },
       "nvim-tree/nvim-web-devicons",
       "folke/todo-comments.nvim"
     },
@@ -30,7 +40,10 @@ return {
 
       })
 
-      telescope.load_extension("fzf")
+      -- Cargar extension FZF solo si está disponible
+      pcall(function()
+        telescope.load_extension("fzf")
+      end)
 
       -- keymaps
       local keymap = vim.keymap

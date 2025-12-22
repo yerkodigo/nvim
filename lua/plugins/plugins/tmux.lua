@@ -1,3 +1,11 @@
+local platform = require("util.platform")
+
+-- Tmux no existe en Windows, deshabilitar plugin
+if platform.is_windows then
+  return {}
+end
+
+-- Configuración original solo para Linux/Mac
 return {
   "christoomey/vim-tmux-navigator",
   cmd = {
